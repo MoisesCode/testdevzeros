@@ -2,7 +2,7 @@
 
 namespace bll
 {
-    public class Class1
+    public class DetalleService
     {
     }
 }

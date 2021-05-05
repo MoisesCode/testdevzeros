@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
+using dal;
 
 namespace testwebapi
 {
@@ -32,6 +34,8 @@ namespace testwebapi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "testwebapi", Version = "v1" });
             });
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<TestWebContext>(c => c.UseSqlServer(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +49,11 @@ namespace testwebapi
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseRouting();
 

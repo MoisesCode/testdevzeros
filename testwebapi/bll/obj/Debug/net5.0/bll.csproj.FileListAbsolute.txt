@@ -1,0 +1,17 @@
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\bin\Debug\net5.0\bll.deps.json
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\bin\Debug\net5.0\bll.dll
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\bin\Debug\net5.0\ref\bll.dll
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\bin\Debug\net5.0\bll.pdb
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\bin\Debug\net5.0\dal.dll
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\bin\Debug\net5.0\entity.dll
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\bin\Debug\net5.0\entity.pdb
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\bin\Debug\net5.0\dal.pdb
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\obj\Debug\net5.0\bll.csprojAssemblyReference.cache
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\obj\Debug\net5.0\bll.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\obj\Debug\net5.0\bll.AssemblyInfoInputs.cache
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\obj\Debug\net5.0\bll.AssemblyInfo.cs
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\obj\Debug\net5.0\bll.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\obj\Debug\net5.0\bll.csproj.CopyComplete
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\obj\Debug\net5.0\bll.dll
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\obj\Debug\net5.0\ref\bll.dll
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\obj\Debug\net5.0\bll.pdb
