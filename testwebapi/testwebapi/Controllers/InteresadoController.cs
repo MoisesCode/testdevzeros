@@ -28,7 +28,7 @@ namespace testwebapi.Controllers
             var response = interesadoService.Guardar(interesado);
             if (response.Error)
             {
-                ModelState.AddModelError("Error al registrar la casa", response.Mensaje);
+                ModelState.AddModelError("Error al registrar al usuario interesado", response.Mensaje);
                 var detallesProblema = new ValidationProblemDetails(ModelState)
                 {
                     Status = StatusCodes.Status400BadRequest
@@ -44,6 +44,8 @@ namespace testwebapi.Controllers
                 Id = interesadoInputModel.Id,
                 Nombre = interesadoInputModel.Nombre,
                 Celular = interesadoInputModel.Celular,
+                Correo = interesadoInputModel.Correo,
+                Contrasena = interesadoInputModel.Contrasena,
                 Facturas = interesadoInputModel.Facturas,
             };
             return interesado;
@@ -54,6 +56,21 @@ namespace testwebapi.Controllers
         {
             var response = interesadoService.Consultar().ConvertAll(i => new InteresadoViewModel(i));
             return response;
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<string> Put(Interesado interesado, string id)
+        {
+            Interesado interesadoConsulta = interesadoService.ConsultarId(id);
+            if (interesadoConsulta == null)
+            {
+                return BadRequest("No se encontro al usuario interesado.");
+            }
+            else
+            {
+                var mensaje = interesadoService.Editar(interesado).Mensaje;
+                return Ok(mensaje);
+            }
         }
 
         [HttpDelete("{id}")]

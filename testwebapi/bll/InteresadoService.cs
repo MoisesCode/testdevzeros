@@ -19,7 +19,6 @@ namespace bll
         {
             try
             {
-                interesado.Id = "121";
                 Interesado interesadoBuscado = testWebContext.Interesados.Find(interesado.Id);
                 if (interesadoBuscado != null)
                 {
@@ -47,9 +46,14 @@ namespace bll
         {
             testWebContext.Interesados.Remove(interesado);
             testWebContext.SaveChanges();
-            return new EliminarInteresadoResponse(interesado, "Interesado eliminado correctamente");
+            return new EliminarInteresadoResponse(interesado, "Interesado eliminado correctamente.");
         }
-
+        public EditarInteresadoResponse Editar(Interesado interesado)
+        {
+            testWebContext.Interesados.Update(interesado);
+            testWebContext.SaveChanges();
+            return new EditarInteresadoResponse(interesado, "Interesado modificado correctamente.");
+        }
 
         public class GuardarInteresadoResponse
         {
@@ -80,6 +84,24 @@ namespace bll
                 Error = false;
             }
             public EliminarInteresadoResponse(string mensaje)
+            {
+                Mensaje = mensaje;
+                Error = true;
+            }
+        }
+
+        public class EditarInteresadoResponse
+        {
+            public Interesado Interesado { get; set; }
+            public string Mensaje { get; set; }
+            public bool Error { get; set; }
+            public EditarInteresadoResponse(Interesado interesado, string mensaje)
+            {
+                Mensaje = mensaje;
+                Interesado = interesado;
+                Error = false;
+            }
+            public EditarInteresadoResponse(string mensaje)
             {
                 Mensaje = mensaje;
                 Error = true;

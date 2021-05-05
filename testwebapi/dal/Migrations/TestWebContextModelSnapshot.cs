@@ -21,6 +21,7 @@ namespace dal.Migrations
             modelBuilder.Entity("entity.Detalle", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("Cantidad")
@@ -47,6 +48,7 @@ namespace dal.Migrations
             modelBuilder.Entity("entity.Factura", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("Descuento")
@@ -71,9 +73,16 @@ namespace dal.Migrations
             modelBuilder.Entity("entity.Interesado", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Celular")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Contrasena")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Correo")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
@@ -87,6 +96,7 @@ namespace dal.Migrations
             modelBuilder.Entity("entity.Producto", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Descripcion")
@@ -114,6 +124,7 @@ namespace dal.Migrations
             modelBuilder.Entity("entity.Proveedor", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Celular")
@@ -133,6 +144,7 @@ namespace dal.Migrations
             modelBuilder.Entity("entity.Usuario", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Celular")

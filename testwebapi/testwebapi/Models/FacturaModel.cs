@@ -10,7 +10,6 @@ namespace Models
                 Id = factura.Id;
                 Descuento = factura.Descuento;
                 Total = factura.Total;
-                TotalProductos = factura.TotalProductos;
                 Interesado = factura.Interesado;
                 Detalles = factura.Detalles;
             }

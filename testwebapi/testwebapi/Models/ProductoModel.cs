@@ -12,7 +12,7 @@ namespace Models
                 Descripcion = producto.Descripcion;
                 Descuento = producto.Descuento;
                 Iva = producto.Iva;
-                Proveedor = producto.Proveedor;
+                NitProveedor = producto.NitProveedor;
             }
         }
         public class ProductoInputModel : Producto { }

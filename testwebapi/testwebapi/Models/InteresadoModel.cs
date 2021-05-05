@@ -10,6 +10,8 @@ namespace Models
                 Id = interesado.Id;
                 Nombre = interesado.Nombre;
                 Celular = interesado.Celular;
+                Correo = interesado.Correo;
+                Contrasena = interesado.Contrasena;
                 Facturas = interesado.Facturas;
             }
         }
