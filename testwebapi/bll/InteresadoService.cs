@@ -9,7 +9,8 @@ namespace bll
     public class InteresadoService
     {
         private TestWebContext testWebContext;
-
+        private UsuarioService usuarioService;
+        private Usuario usuario;
         public InteresadoService(TestWebContext testWebContext)
         {
             this.testWebContext = testWebContext;
@@ -26,6 +27,7 @@ namespace bll
                 }
                 testWebContext.Interesados.Add(interesado);
                 testWebContext.SaveChanges();
+                crearUsuario(interesado);
                 return new GuardarInteresadoResponse(interesado, "Interesado guardado correctamente");
             }
             catch (Exception e)
@@ -33,7 +35,21 @@ namespace bll
                 return new GuardarInteresadoResponse($"Ocurrió un error {e.Message}");
             }
         }
+        public void crearUsuario(Interesado interesado)
+        {
+            usuarioService = new UsuarioService(testWebContext);
+            usuario = new Usuario();
 
+            usuario.Id = interesado.Id;
+            usuario.Nombre = interesado.Nombre;
+            usuario.Correo = interesado.Correo;
+            usuario.Contrasena =interesado.Contrasena;
+            usuario.Celular = interesado.Celular;
+            usuario.Rol = "interesado";
+
+            Interesado interesadoBuscado = ConsultarId(interesado.Id);
+            usuarioService.Guardar(usuario);
+        }
         public List<Interesado> Consultar()
         {
             return testWebContext.Interesados.ToList();

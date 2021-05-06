@@ -11,11 +11,12 @@ import { ProveedorRegistroComponent } from './testweb/pages/proveedor/proveedor-
 import { ProveedorConsultaComponent } from './testweb/pages/proveedor/proveedor-consulta/proveedor-consulta.component';
 
 import { AuthGuard } from './guards/auth.guard';
+import { AuthInteresadoGuard } from './guards/auth-interesado.guard';
 
 const routes: Routes = [
   {
     path: 'inicio',
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AuthInteresadoGuard],
     component: InicioComponent
   },
   {

@@ -47,7 +47,9 @@ export class LoginComponent implements OnInit {
       this.usuario = (JSON.parse(sessionStorage.getItem('currentUser')));
       if (this.usuario.rol === 'avaluos'){
         this.permitirAcceso = true;
-      }else { this.permitirAcceso = false; }
+      } else if (this.usuario.rol === 'interesado') {
+        this.permitirAcceso = true;
+      } else { this.permitirAcceso = false; }
     });
     this.redireccionar();
   }

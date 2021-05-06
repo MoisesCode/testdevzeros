@@ -6,7 +6,7 @@
         <div class="col-lg-6 col-md-8 mx-auto">
           <h1 class="fw-light">Tienda devzeros</h1>
           <p class="lead text-muted">Somos una tienda innovadora, con una gran variedad de productos y excelente gestion, comprometida con el medio ambiente. Saludos</p>
-          <p>
+          <p *ngIf="usuarioInteresado">
             <a routerLink="/registrarProducto" class="btn btn-primary my-2">Registrar un producto</a>
           </p>
         </div>
@@ -24,10 +24,11 @@
                 <h6>{{ item.nombre }}, ${{ item.precio }}</h6>
                 <h6>Descuento, ${{ item.descuento }}</h6>
                 <p class="card-text">{{ item.descripcion }}</p>
+                <p class="card-text">01/01/2021</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Eliminar</button>
+                    <button *ngIf="usuarioInteresado" type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
+                    <button *ngIf="usuarioInteresado" type="button" class="btn btn-sm btn-outline-secondary">Eliminar</button>
                   </div>
                   <small class="text-muted">Cantidad {{ item.cantidad }}</small>
                 </div>

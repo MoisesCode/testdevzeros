@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Usuario } from '../../models/usuario';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,14 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  usuario: Usuario;
+  usuarioInteresado = false;
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.usuario = (JSON.parse(sessionStorage.getItem('currentUser')));
+    this.verificarPermiso();
   }
 
   onClick(): void {
@@ -18,5 +24,13 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/login']);
     window.location.reload();
     this.router.navigate(['/login']);
+  }
+
+  verificarPermiso(): void{
+    if (this.usuario.rol === 'interesado'){
+      this.usuarioInteresado = false;
+    }else{
+      this.usuarioInteresado = true;
+    }
   }
 }

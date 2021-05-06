@@ -6,8 +6,8 @@
       </a>
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a routerLink="/proveedores" class="nav-link px-2 text-white">Proveedores</a></li>
-        <li><a routerLink="/clientes" class="nav-link px-2 text-white">Clientes</a></li>
+        <li *ngIf="usuarioInteresado"><a routerLink="/proveedores" class="nav-link px-2 text-white">Proveedores</a></li>
+        <li *ngIf="usuarioInteresado"><a routerLink="/clientes" class="nav-link px-2 text-white">Clientes</a></li>
       </ul>
 
       <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
