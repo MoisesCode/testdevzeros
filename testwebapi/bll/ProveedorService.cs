@@ -18,7 +18,7 @@ namespace bll
         {
             try
             {
-                Proveedor proveedorBuscado = testWebContext.Proveedores.Find(proveedor.Id);
+                Proveedor proveedorBuscado = testWebContext.Proveedores.Find(proveedor.Nit);
                 if (proveedorBuscado != null)
                 {
                     return new GuardarProveedorResponse("Proveedor ya registrado.");

@@ -41,7 +41,6 @@ namespace testwebapi.Controllers
         {
             Proveedor proveedor = new Proveedor
             {
-                Id = proveedorInputModel.Id,
                 Nit = proveedorInputModel.Nit,
                 Nombre = proveedorInputModel.Nombre,
                 Celular = proveedorInputModel.Celular,
@@ -55,6 +54,15 @@ namespace testwebapi.Controllers
         {
             var response = proveedorService.Consultar().ConvertAll(i => new ProveedorViewModel(i));
             return response;
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<ProveedorViewModel> getByNit(string id)
+        {
+            Proveedor proveedor = proveedorService.ConsultarId(id);
+            if(proveedor == null) return NotFound();
+            ProveedorViewModel proveedorViewModel = new ProveedorViewModel(proveedor);
+            return proveedorViewModel;
         }
 
         [HttpPut("{id}")]

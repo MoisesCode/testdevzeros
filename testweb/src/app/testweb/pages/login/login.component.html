@@ -1,19 +1,19 @@
 <body class="text-center">
   <main class="form-signin">
-    <form>
+    <form [formGroup]="formGroup">
       <img class="mb-4" src="../../../../assets/img/login.png" alt="" width="100" height="100">
       <h1 class="h3 mb-3 fw-normal">Bienvenido</h1>
 
       <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <input type="email" formControlName="correo" class="form-control" id="floatingInput" placeholder="name@example.com">
         <label for="floatingInput">Correo electronico</label>
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <input type="password" formControlName="contrasena" class="form-control" id="floatingPassword" placeholder="Password">
         <label for="floatingPassword">Contraseña</label>
       </div>
 
-      <button [routerLink]="ruta"  class="w-100 btn btn-lg btn-primary" (click)="onClick()" type="button">Iniciar sesion</button>
+      <button [routerLink]="ruta" [disabled]="formGroup.invalid" class="w-100 btn btn-lg btn-primary" (click)="onClick()" type="button">Iniciar sesion</button>
       <p class="mt-5 mb-3 text-muted">&copy; byMuchacho</p>
     </form>
   </main>

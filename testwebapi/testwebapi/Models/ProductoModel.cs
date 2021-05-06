@@ -10,7 +10,9 @@ namespace Models
                 Id = producto.Id;
                 Nombre = producto.Nombre;
                 Descripcion = producto.Descripcion;
+                Precio = producto.Precio;
                 Descuento = producto.Descuento;
+                Cantidad = producto.Cantidad;
                 Iva = producto.Iva;
                 NitProveedor = producto.NitProveedor;
             }

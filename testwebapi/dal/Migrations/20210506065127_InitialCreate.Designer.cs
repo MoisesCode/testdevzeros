@@ -9,7 +9,7 @@ using dal;
 namespace dal.Migrations
 {
     [DbContext(typeof(TestWebContext))]
-    [Migration("20210505175901_InitialCreate")]
+    [Migration("20210506065127_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,9 +62,6 @@ namespace dal.Migrations
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("TotalProductos")
-                        .HasColumnType("decimal(18,2)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("InteresadoId");
@@ -101,6 +98,9 @@ namespace dal.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<decimal>("Cantidad")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("Descripcion")
                         .HasColumnType("nvarchar(max)");
 
@@ -110,35 +110,37 @@ namespace dal.Migrations
                     b.Property<decimal>("Iva")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("NitProveedor")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Nombre")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProveedorId")
+                    b.Property<decimal>("Precio")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ProveedorNit")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProveedorId");
+                    b.HasIndex("ProveedorNit");
 
                     b.ToTable("Productos");
                 });
 
             modelBuilder.Entity("entity.Proveedor", b =>
                 {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Nit")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Celular")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Nit")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Nombre")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Nit");
 
                     b.ToTable("Proveedores");
                 });
@@ -193,11 +195,9 @@ namespace dal.Migrations
 
             modelBuilder.Entity("entity.Producto", b =>
                 {
-                    b.HasOne("entity.Proveedor", "Proveedor")
+                    b.HasOne("entity.Proveedor", null)
                         .WithMany("Productos")
-                        .HasForeignKey("ProveedorId");
-
-                    b.Navigation("Proveedor");
+                        .HasForeignKey("ProveedorNit");
                 });
 
             modelBuilder.Entity("entity.Factura", b =>

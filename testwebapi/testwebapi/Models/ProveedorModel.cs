@@ -7,7 +7,6 @@ namespace Models
         {
             public ProveedorViewModel(Proveedor proveedor)
             {
-                Id = proveedor.Id;
                 Nit = proveedor.Nit;
                 Nombre = proveedor.Nombre;
                 Celular = proveedor.Celular;

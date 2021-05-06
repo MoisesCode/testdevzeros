@@ -28,7 +28,4 @@ export class InteresadoService {
     );
   }
 
-  consoles(): void {
-    console.log(this.interesados);
-  }
 }

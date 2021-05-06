@@ -9,19 +9,26 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentsModule } from '../components/components.module';
 import { InteresadoRegistroComponent } from './interesado/interesado-registro/interesado-registro.component';
 import { InteresadoConsultaComponent } from './interesado/interesado-consulta/interesado-consulta.component';
+import { ProductoRegistroComponent } from './producto/producto-registro/producto-registro.component';
+import { ProveedorRegistroComponent } from './proveedor/proveedor-registro/proveedor-registro.component';
+import { ProveedorConsultaComponent } from './proveedor/proveedor-consulta/proveedor-consulta.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     InicioComponent,
     InteresadoRegistroComponent,
-    InteresadoConsultaComponent
+    InteresadoConsultaComponent,
+    ProductoRegistroComponent,
+    ProveedorRegistroComponent,
+    ProveedorConsultaComponent
   ],
   exports: [
     LoginComponent,
     InicioComponent,
     InteresadoRegistroComponent,
-    InteresadoConsultaComponent
+    InteresadoConsultaComponent,
+    ProductoRegistroComponent
   ],
   imports: [
     CommonModule,
