@@ -1,31 +1,28 @@
 <app-header></app-header>
-  <body>
-    <main>
-      <div class="album py-3 bg-light">
-        <div class="container">
-        <div id="btn">
-          <button type="button" routerLink="/registrarCliente" class="btn btn-primary">Registrar</button>
-        </div>
+<body>
+  <main>
+    <div class="album py-3 bg-light">
+      <div class="container">
+        <h4 class="text-center py-3">Detalles del producto</h4>
+        <h4>Producto comprado</h4>
         <table class="table table-hover">
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Identificacion</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Celular</th>
-              <th scope="col">Correo</th>
-              <th scope="col">Contraseña</th>
-              <th scope="col">Acciones</th>
+              <th scope="col">Total</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Nit proveedor</th>
             </tr>
           </thead>
-          <tbody *ngFor="let item of interesados; index as i">
+          <tbody *ngFor="let item of facturas; index as i">
             <tr>
               <th scope="row"> {{ i + 1 }} </th>
-              <td> {{ item.id }} </td>
-              <td> {{ item.nombre }} </td>
-              <td> {{ item.celular }} </td>
-              <td> {{ item.correo }} </td>
-              <td> {{ item.contrasena }} </td>
+              <td> {{ item }} </td>
+              <td> {{ item}} </td>
+              <td> {{ item}} </td>
+              <td> {{ item }} </td>
+              <td> {{ item }} </td>
               <td>
                 <div class="btn-group me-2" role="group" aria-label="Second group">
                   <button type="button" class="btn btn-danger">

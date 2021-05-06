@@ -9,6 +9,9 @@ namespace entity
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Id { get; set; }
+
+        [ForeignKey("FacturaId")]
+        public string FacturaId { get; set; }
         public decimal Cantidad { get; set; }
         public decimal Total { get; set; }
         public Producto Producto { get; set; }

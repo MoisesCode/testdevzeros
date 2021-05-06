@@ -42,8 +42,9 @@ namespace testwebapi.Controllers
             Factura factura = new Factura
             {
                 Id = facturaInputModel.Id,
-                Descuento = facturaInputModel.Descuento,
+                Tipo = facturaInputModel.Tipo,
                 Total = facturaInputModel.Total,
+                Descuento = facturaInputModel.Descuento,
                 Interesado = facturaInputModel.Interesado,
                 Detalles = facturaInputModel.Detalles
             };

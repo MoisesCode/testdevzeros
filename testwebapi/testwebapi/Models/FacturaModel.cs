@@ -8,8 +8,9 @@ namespace Models
             public FacturaViewModel(Factura factura)
             {
                 Id = factura.Id;
-                Descuento = factura.Descuento;
+                Tipo = factura.Tipo;
                 Total = factura.Total;
+                Descuento = factura.Descuento;
                 Interesado = factura.Interesado;
                 Detalles = factura.Detalles;
             }

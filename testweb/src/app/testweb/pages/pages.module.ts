@@ -12,6 +12,7 @@ import { InteresadoConsultaComponent } from './interesado/interesado-consulta/in
 import { ProductoRegistroComponent } from './producto/producto-registro/producto-registro.component';
 import { ProveedorRegistroComponent } from './proveedor/proveedor-registro/proveedor-registro.component';
 import { ProveedorConsultaComponent } from './proveedor/proveedor-consulta/proveedor-consulta.component';
+import { ProductoDetalleComponent } from './producto/producto-detalle/producto-detalle.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ProveedorConsultaComponent } from './proveedor/proveedor-consulta/prove
     InteresadoConsultaComponent,
     ProductoRegistroComponent,
     ProveedorRegistroComponent,
-    ProveedorConsultaComponent
+    ProveedorConsultaComponent,
+    ProductoDetalleComponent
   ],
   exports: [
     LoginComponent,

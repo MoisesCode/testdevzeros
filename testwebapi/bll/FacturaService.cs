@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System;
 using entity;
@@ -13,23 +15,24 @@ namespace bll
         public FacturaService(TestWebContext testWebContext)
         {
             this.testWebContext = testWebContext;
+            detalleService = new DetalleService(testWebContext);
         }
 
         public GuardarFacturaResponse Guardar(Factura factura)
         {
             try
             {
-                Factura FacturaBuscado = testWebContext.Facturas.Find(factura.Id);
-                if (FacturaBuscado != null)
+                Factura facturaBuscado = testWebContext.Facturas.Find(factura.Id);
+                if (facturaBuscado != null)
                 {
                     return new GuardarFacturaResponse("Factura ya registrada.");
                 }
                 testWebContext.Facturas.Add(factura);
+                testWebContext.SaveChanges();
                 foreach (var item in factura.Detalles)
                 {
                     detalleService.Guardar(item);
                 }
-                testWebContext.SaveChanges();
                 return new GuardarFacturaResponse(factura, "Factura guardada correctamente");
             }
             catch (Exception e)
@@ -40,7 +43,16 @@ namespace bll
 
         public List<Factura> Consultar()
         {
-            return testWebContext.Facturas.ToList();
+            List<Factura> facturas = new List<Factura>();
+            foreach (var item in testWebContext.Facturas.ToList())
+            {
+                foreach (var detalle in testWebContext.Detalles.Where(d => d.FacturaId == item.Id).ToList())
+                {
+                    item.AgregarDetalle(testWebContext.Productos.Where(p => p.DetalleId == detalle.Id).FirstOrDefault());
+                    facturas.Add(item);
+                }
+            }
+            return facturas;
         }
         public Factura ConsultarId(string id)
         {

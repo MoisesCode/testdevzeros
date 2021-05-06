@@ -5,6 +5,7 @@ export class Producto {
   cantidad: number;
   descripcion: string;
   descuento: number;
+  detalleId: string;
   iva?: number;
   nitProveedor: string;
 }

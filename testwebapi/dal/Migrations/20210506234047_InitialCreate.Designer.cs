@@ -9,7 +9,7 @@ using dal;
 namespace dal.Migrations
 {
     [DbContext(typeof(TestWebContext))]
-    [Migration("20210506065127_InitialCreate")]
+    [Migration("20210506234047_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,17 +32,12 @@ namespace dal.Migrations
                     b.Property<string>("FacturaId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ProductoId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("FacturaId");
-
-                    b.HasIndex("ProductoId");
 
                     b.ToTable("Detalles");
                 });
@@ -58,6 +53,9 @@ namespace dal.Migrations
 
                     b.Property<string>("InteresadoId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Tipo")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(18,2)");
@@ -107,6 +105,9 @@ namespace dal.Migrations
                     b.Property<decimal>("Descuento")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("DetalleId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<decimal>("Iva")
                         .HasColumnType("decimal(18,2)");
 
@@ -123,6 +124,10 @@ namespace dal.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DetalleId")
+                        .IsUnique()
+                        .HasFilter("[DetalleId] IS NOT NULL");
 
                     b.HasIndex("ProveedorNit");
 
@@ -176,12 +181,6 @@ namespace dal.Migrations
                     b.HasOne("entity.Factura", null)
                         .WithMany("Detalles")
                         .HasForeignKey("FacturaId");
-
-                    b.HasOne("entity.Producto", "Producto")
-                        .WithMany()
-                        .HasForeignKey("ProductoId");
-
-                    b.Navigation("Producto");
                 });
 
             modelBuilder.Entity("entity.Factura", b =>
@@ -195,9 +194,18 @@ namespace dal.Migrations
 
             modelBuilder.Entity("entity.Producto", b =>
                 {
+                    b.HasOne("entity.Detalle", null)
+                        .WithOne("Producto")
+                        .HasForeignKey("entity.Producto", "DetalleId");
+
                     b.HasOne("entity.Proveedor", null)
                         .WithMany("Productos")
                         .HasForeignKey("ProveedorNit");
+                });
+
+            modelBuilder.Entity("entity.Detalle", b =>
+                {
+                    b.Navigation("Producto");
                 });
 
             modelBuilder.Entity("entity.Factura", b =>

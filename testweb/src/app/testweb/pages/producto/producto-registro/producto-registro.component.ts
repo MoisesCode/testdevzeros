@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Detalle } from 'src/app/testweb/models/detalle';
+import { Factura } from 'src/app/testweb/models/factura';
 import { Producto } from 'src/app/testweb/models/producto';
 import { Proveedor } from 'src/app/testweb/models/proveedor';
-import { ProductoService } from 'src/app/testweb/services/producto.service';
+import { FacturaService } from 'src/app/testweb/services/factura.service';
 import { ProveedorService } from 'src/app/testweb/services/proveedor.service';
 
 @Component({
@@ -17,8 +19,10 @@ export class ProductoRegistroComponent implements OnInit {
   producto: Producto;
   proveedor: Proveedor;
   encontrado: boolean;
+  factura: Factura;
+  detalle: Detalle;
 
-  constructor(private formBuilder: FormBuilder, private productoService: ProductoService, private proveedorService: ProveedorService) { }
+  constructor(private formBuilder: FormBuilder, private facturaService: FacturaService, private proveedorService: ProveedorService) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -43,6 +47,22 @@ export class ProductoRegistroComponent implements OnInit {
     });
   }
 
+  crearFactura(producto: Producto): void{
+    this.factura = new Factura();
+    this.factura.detalles = [];
+    this.factura.total = 0;
+    this.factura.tipo = 'Compra';
+    this.factura.descuento = 0;
+    this.factura.detalles.push(this.crearDetalle(producto));
+  }
+  crearDetalle(producto: Producto): Detalle {
+    this.detalle = new Detalle();
+    this.detalle.cantidad = producto.cantidad;
+    this.detalle.total = 0;
+    this.detalle.producto = producto;
+    return this.detalle;
+  }
+
   onRegistrar(): void {
     if (this.formGroup.invalid && this.encontrado === false){
       return;
@@ -52,8 +72,9 @@ export class ProductoRegistroComponent implements OnInit {
 
   registrar(): void {
     this.producto = this.formGroup.value;
-    this.productoService.post(this.producto).subscribe( p =>
-      console.log(p)
+    this.crearFactura(this.producto);
+    this.facturaService.post(this.factura).subscribe( f =>
+      this.factura = f
     );
   }
 

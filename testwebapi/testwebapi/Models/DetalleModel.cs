@@ -8,6 +8,7 @@ namespace Models
             public DetalleViewModel(Detalle detalle)
             {
                 Id = detalle.Id;
+                FacturaId = detalle.FacturaId;
                 Cantidad = detalle.Cantidad;
                 Total = detalle.Total;
                 Producto = detalle.Producto;

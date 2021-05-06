@@ -17,6 +17,11 @@ export class InicioComponent implements OnInit {
 
   usuario: Usuario;
   usuarioInteresado = false;
+  usuarioVentas = false;
+
+  permisoRegistrarProductos = false;
+  permisoEliminarProductos = false;
+  permisoModificarProductos = false;
 
   ngOnInit(): void {
     this.usuario = (JSON.parse(sessionStorage.getItem('currentUser')));
@@ -27,8 +32,16 @@ export class InicioComponent implements OnInit {
   verificarPermiso(): void{
     if (this.usuario.rol === 'interesado'){
       this.usuarioInteresado = false;
+    }else if (this.usuario.rol === 'ventas'){
+      this.permisoRegistrarProductos = false;
+      this.permisoEliminarProductos = false;
+    }else if (this.usuario.rol === 'avaluos'){
+      this.permisoRegistrarProductos = true;
+      this.permisoEliminarProductos = true;
+      this.permisoModificarProductos = true;
     }else{
       this.usuarioInteresado = true;
+      this.usuarioVentas = false;
     }
   }
 

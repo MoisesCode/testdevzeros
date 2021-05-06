@@ -14,6 +14,7 @@ namespace Models
                 Descuento = producto.Descuento;
                 Cantidad = producto.Cantidad;
                 Iva = producto.Iva;
+                DetalleId = producto.DetalleId;
                 NitProveedor = producto.NitProveedor;
             }
         }

@@ -49,7 +49,9 @@ export class LoginComponent implements OnInit {
         this.permitirAcceso = true;
       } else if (this.usuario.rol === 'interesado') {
         this.permitirAcceso = true;
-      } else { this.permitirAcceso = false; }
+      } else if (this.usuario.rol === 'ventas'){
+        this.permitirAcceso = true;
+      }else { this.permitirAcceso = false; }
     });
     this.redireccionar();
   }

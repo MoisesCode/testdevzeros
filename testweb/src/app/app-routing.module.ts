@@ -9,14 +9,16 @@ import { InteresadoRegistroComponent } from './testweb/pages/interesado/interesa
 import { ProductoRegistroComponent } from './testweb/pages/producto/producto-registro/producto-registro.component';
 import { ProveedorRegistroComponent } from './testweb/pages/proveedor/proveedor-registro/proveedor-registro.component';
 import { ProveedorConsultaComponent } from './testweb/pages/proveedor/proveedor-consulta/proveedor-consulta.component';
+import { ProductoDetalleComponent } from './testweb/pages/producto/producto-detalle/producto-detalle.component';
 
 import { AuthGuard } from './guards/auth.guard';
 import { AuthInteresadoGuard } from './guards/auth-interesado.guard';
+import { AuthVentasGuard } from './guards/auth-ventas.guard';
 
 const routes: Routes = [
   {
     path: 'inicio',
-    canActivate: [AuthGuard, AuthInteresadoGuard],
+    canActivate: [AuthGuard, AuthInteresadoGuard, AuthVentasGuard],
     component: InicioComponent
   },
   {
@@ -47,6 +49,10 @@ const routes: Routes = [
     path: 'proveedores',
     canActivate: [AuthGuard],
     component: ProveedorConsultaComponent
+  },
+  {
+    path: 'detalles',
+    component: ProductoDetalleComponent
   },
   {
     path: '**',

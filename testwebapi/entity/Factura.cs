@@ -17,24 +17,25 @@ namespace entity
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Id { get; set; }
+        public string Tipo { get; set; }
         public decimal Descuento { get; set; }
         public decimal Total { get; set; }
         public Interesado Interesado { get; set; }
         public List<Detalle> Detalles { get; set; }
 
-        public List<Detalle> AgregarDetalle(decimal cantidad, Producto producto)
+        public List<Detalle> AgregarDetalle(Producto producto)
         {
             Detalle detalle = new Detalle();
             detalle.Producto = producto;
-            detalle.Cantidad = cantidad;
+            detalle.Cantidad = producto.Cantidad;
             detalle.CalcularTotal();
-            CalcularTotal();
+            calcularTotal();
             return Detalles;
         }
 
-        public void CalcularTotal()
+        private void calcularTotal()
         {
-            Total = Detalles.Sum(d => d.Total);
+            Total = Detalles.Sum( d => d.Total);
         }
     }
 }

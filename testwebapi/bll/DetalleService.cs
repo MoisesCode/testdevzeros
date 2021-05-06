@@ -9,6 +9,8 @@ namespace bll
     public class DetalleService
     {
         private TestWebContext testWebContext;
+        private ProductoService productoService;
+
         public DetalleService(TestWebContext testWebContext)
         {
             this.testWebContext = testWebContext;
@@ -23,14 +25,21 @@ namespace bll
                 {
                     return new GuardarDetalleResponse("Detalle ya registrada.");
                 }
+                detalle.CalcularTotal();
                 testWebContext.Detalles.Add(detalle);
                 testWebContext.SaveChanges();
+                GuardarProducto(detalle.Producto);
                 return new GuardarDetalleResponse(detalle, "Detalle guardada correctamente");
             }
             catch (Exception e)
             {
                 return new GuardarDetalleResponse($"Ocurrió un error {e.Message}");
             }
+        }
+        private void GuardarProducto(Producto producto)
+        {
+            productoService = new ProductoService(testWebContext);
+            productoService.Guardar(producto);
         }
 
         public class GuardarDetalleResponse
