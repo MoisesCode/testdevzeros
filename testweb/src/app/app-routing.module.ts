@@ -10,9 +10,12 @@ import { ProductoRegistroComponent } from './testweb/pages/producto/producto-reg
 import { ProveedorRegistroComponent } from './testweb/pages/proveedor/proveedor-registro/proveedor-registro.component';
 import { ProveedorConsultaComponent } from './testweb/pages/proveedor/proveedor-consulta/proveedor-consulta.component';
 
+import { AuthGuard } from './guards/auth.guard';
+
 const routes: Routes = [
   {
     path: 'inicio',
+    canActivate: [AuthGuard],
     component: InicioComponent
   },
   {
@@ -21,22 +24,27 @@ const routes: Routes = [
   },
   {
     path: 'clientes',
+    canActivate: [AuthGuard],
     component: InteresadoConsultaComponent
   },
   {
     path: 'registrarCliente',
+    canActivate: [AuthGuard],
     component: InteresadoRegistroComponent
   },
   {
     path: 'registrarProducto',
+    canActivate: [AuthGuard],
     component: ProductoRegistroComponent
   },
   {
     path: 'registrarProveedor',
+    canActivate: [AuthGuard],
     component: ProveedorRegistroComponent
   },
   {
     path: 'proveedores',
+    canActivate: [AuthGuard],
     component: ProveedorConsultaComponent
   },
   {

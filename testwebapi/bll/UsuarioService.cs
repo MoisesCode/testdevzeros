@@ -43,6 +43,17 @@ namespace bll
             return testWebContext.Usuarios.Find(id);
         }
 
+        public Usuario buscarByCorreoContrasena(string correo, string contrasena){
+            try
+            {
+                return testWebContext.Usuarios.Where(u => u.Correo == correo && u.Contrasena == contrasena).FirstOrDefault();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public EliminarUsuarioResponse Eliminar(Usuario usuario)
         {
             testWebContext.Usuarios.Remove(usuario);

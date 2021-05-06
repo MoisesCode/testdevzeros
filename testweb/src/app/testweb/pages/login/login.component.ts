@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../models/usuario';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +12,12 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class LoginComponent implements OnInit {
 
-  ruta = '/inicio';
+  ruta: string;
   usuario: Usuario;
   formGroup: FormGroup;
+  permitirAcceso = false;
 
-  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService) { }
+  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService, private router: Router) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -39,5 +41,20 @@ export class LoginComponent implements OnInit {
     this.buscar();
   }
 
-  buscar(): void {}
+  buscar(): void {
+    this.usuario = this.formGroup.value;
+    this.usuarioService.getUser(this.usuario).subscribe( u => {
+      this.usuario = (JSON.parse(sessionStorage.getItem('currentUser')));
+      if (this.usuario.rol === 'avaluos'){
+        this.permitirAcceso = true;
+      }else { this.permitirAcceso = false; }
+    });
+    this.redireccionar();
+  }
+
+  redireccionar(): void{
+    if (this.permitirAcceso){
+      this.router.navigate(['/inicio']);
+    }
+  }
 }
