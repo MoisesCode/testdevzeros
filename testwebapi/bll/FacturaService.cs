@@ -29,10 +29,6 @@ namespace bll
                 }
                 testWebContext.Facturas.Add(factura);
                 testWebContext.SaveChanges();
-                foreach (var item in factura.Detalles)
-                {
-                    detalleService.Guardar(item);
-                }
                 return new GuardarFacturaResponse(factura, "Factura guardada correctamente");
             }
             catch (Exception e)
@@ -48,7 +44,7 @@ namespace bll
             {
                 foreach (var detalle in testWebContext.Detalles.Where(d => d.FacturaId == item.Id).ToList())
                 {
-                    item.AgregarDetalle(testWebContext.Productos.Where(p => p.DetalleId == detalle.Id).FirstOrDefault());
+                    item.AgregarDetalle(testWebContext.Productos.Where(p => p.Id == detalle.IdProducto).FirstOrDefault());
                     facturas.Add(item);
                 }
             }
@@ -58,7 +54,7 @@ namespace bll
         public Factura ConsultarByProductoId(string id)
         {
             Producto producto = testWebContext.Productos.Find(id);
-            Detalle detalle = testWebContext.Detalles.Find(producto.DetalleId);
+            Detalle detalle = testWebContext.Detalles.Find(producto.Id);
             Factura factura = testWebContext.Facturas.Find(detalle.FacturaId);
 
             return factura;

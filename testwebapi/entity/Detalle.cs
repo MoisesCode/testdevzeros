@@ -14,6 +14,9 @@ namespace entity
         public string FacturaId { get; set; }
         public decimal Cantidad { get; set; }
         public decimal Total { get; set; }
+        public decimal Descuento { get; set; }
+        [ForeignKey("IdProducto")]
+        public string IdProducto { get; set; }
         public Producto Producto { get; set; }
 
         public void CalcularTotal()

@@ -1,0 +1,76 @@
+<app-header></app-header>
+<body>
+  <main>
+    <div class="py-3 bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="row">
+            <h4>Factura</h4>
+          </div>
+          <div id="btn">
+            <button type="button" (click)="generarFactura()" class="col-md-3 btn btn-primary">Generar factura</button>
+          </div>
+        </div>
+
+        <br>
+        <div class="row">
+          <div class="col-md-7">
+            <h4>Productos agregados</h4>
+            <h6>Nombre / precio / Cantidad / Subtotal</h6>
+            <div *ngFor="let item of factura.detalles">
+              <a> {{item.producto.nombre}} / </a>
+              <a> {{item.producto.precio}} / </a>
+              <a> {{item.producto.cantidad}} / </a>
+              <a> {{ item.total }} / </a>
+            </div>
+          </div>
+
+          <div class="row col-md-2">
+            <label>Cantidad</label>
+            <input [(ngModel)]="cantidad" type="number" class="form-control">
+            <label>Precio</label>
+            <input [(ngModel)]="precio" type="number" class="form-control">
+            <label>Descuento</label>
+            <input [(ngModel)]="descuento" type="number" class="form-control">
+          </div>
+
+          <div class="col-md-3">
+            <label>Cliente id</label>
+              <div class="input-group mb-3">
+                <input [(ngModel)]="clienteId" type="text" class="form-control">
+                <button (click)="buscarCliente()" class="btn btn-outline-secondary" type="button">Buscar</button>
+              </div>
+              <h4>Descuento ${{ descuentoview }}</h4>
+              <h4>Total ${{ totalview }}</h4>
+              <h4>Total a pagar ${{ totalview }}</h4>
+          </div>
+        </div>
+
+        <div class="album py-3 bg-light">
+          <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+              <div class="col" *ngFor="let item of productos">
+                <div class="card shadow-sm">
+                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+                  <div class="card-body">
+                    <h6>{{ item.nombre }}, ${{ item.precio }}</h6>
+                    <h6>Descuento, ${{ item.descuento }}</h6>
+                    <p class="card-text">{{ item.descripcion }}</p>
+                    <p class="card-text">01/01/2021</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" (click)="agregar(item)" class="btn btn-sm btn-outline-secondary">Agregar</button>
+                      </div>
+                      <small class="text-muted text-center">Cantidad {{ item.cantidad }}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>

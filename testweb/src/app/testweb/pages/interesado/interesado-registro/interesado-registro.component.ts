@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Interesado } from 'src/app/testweb/models/interesado';
 import { InteresadoService } from 'src/app/testweb/services/interesado.service';
 
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-interesado-registro',
   templateUrl: './interesado-registro.component.html',
@@ -13,7 +14,7 @@ export class InteresadoRegistroComponent implements OnInit {
   formGroup: FormGroup;
   interesado: Interesado;
 
-  constructor(private formBuilder: FormBuilder, private interesadoService: InteresadoService) { }
+  constructor(private formBuilder: FormBuilder, private interesadoService: InteresadoService, private localtion: Location) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -47,7 +48,7 @@ export class InteresadoRegistroComponent implements OnInit {
   registrar(): void {
     this.interesado = this.formGroup.value;
     this.interesadoService.post(this.interesado).subscribe( i =>
-      console.log(i)
+      this.localtion.back()
     );
   }
 

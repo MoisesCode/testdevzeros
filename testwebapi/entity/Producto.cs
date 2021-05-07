@@ -19,9 +19,6 @@ namespace entity
         public string Descripcion { get; set; }
         public decimal Descuento { get; set; }
         public decimal Iva { get; set; }
-
-        [ForeignKey("DetalleId")]
-        public string DetalleId { get; set; }
         public string NitProveedor { get; set; }
         public decimal Precio { get; set; }
 

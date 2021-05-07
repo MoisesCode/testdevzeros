@@ -14,6 +14,7 @@ import { ProductoDetalleComponent } from './testweb/pages/producto/producto-deta
 import { AuthGuard } from './guards/auth.guard';
 import { AuthInteresadoGuard } from './guards/auth-interesado.guard';
 import { AuthVentasGuard } from './guards/auth-ventas.guard';
+import { GenerarFacturaComponent } from './testweb/pages/factura/generar-factura/generar-factura.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,10 @@ const routes: Routes = [
   {
     path: 'detalles',
     component: ProductoDetalleComponent
+  },
+  {
+    path: 'generarFactura',
+    component: GenerarFacturaComponent
   },
   {
     path: '**',

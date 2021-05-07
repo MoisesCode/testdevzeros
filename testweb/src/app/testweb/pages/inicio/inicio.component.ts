@@ -23,6 +23,7 @@ export class InicioComponent implements OnInit {
   permisoEliminarProductos = false;
   permisoModificarProductos = false;
   permisoGenerarFactura = false;
+  permisoRegistrarCliente = false;
   ngOnInit(): void {
     this.usuario = (JSON.parse(sessionStorage.getItem('currentUser')));
     this.verificarPermiso();
@@ -36,6 +37,7 @@ export class InicioComponent implements OnInit {
     }else if (this.usuario.rol === 'ventas'){
       this.permisoRegistrarProductos = false;
       this.permisoEliminarProductos = false;
+      this.permisoRegistrarCliente = false;
       this.permisoGenerarFactura = true;
     }else if (this.usuario.rol === 'avaluos'){
       this.permisoRegistrarProductos = true;

@@ -24,7 +24,7 @@ export class ProductoDetalleComponent implements OnInit {
   }
 
   buscarDetalle(): void {
-    this.detalleService.getById(this.producto.detalleId).subscribe(d =>
+    this.detalleService.getById(this.producto.id).subscribe(d =>
       this.detalle = d
     );
   }

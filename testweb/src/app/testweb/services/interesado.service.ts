@@ -28,4 +28,9 @@ export class InteresadoService {
     );
   }
 
+  getById(id): Observable<Interesado> {
+    return this.http.get<Interesado>(this.urlApi + '/' + id).pipe(
+      tap(p => this.interesado = p)
+    );
+  }
 }

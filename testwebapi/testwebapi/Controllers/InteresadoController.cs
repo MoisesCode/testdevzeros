@@ -51,6 +51,24 @@ namespace testwebapi.Controllers
             return interesado;
         }
 
+        [HttpGet("{id}")]
+        public ActionResult<InteresadoViewModel> getByNit(string id)
+        {
+            var response = interesadoService.ConsultarId(id);
+            if (response.Error)
+            {
+                ModelState.AddModelError("Error al consultar usuario interesado", response.Mensaje);
+                var detallesProblema = new ValidationProblemDetails(ModelState)
+                {
+                    Status = StatusCodes.Status400BadRequest
+                };
+                return BadRequest(detallesProblema);
+            }
+
+            InteresadoViewModel interesadoViewModel = new InteresadoViewModel(response.Interesado);
+            return Ok(interesadoViewModel);
+        }
+
         [HttpGet]
         public IEnumerable<InteresadoViewModel> Gets()
         {
@@ -61,7 +79,7 @@ namespace testwebapi.Controllers
         [HttpPut("{id}")]
         public ActionResult<string> Put(Interesado interesado, string id)
         {
-            Interesado interesadoConsulta = interesadoService.ConsultarId(id);
+            Interesado interesadoConsulta = interesadoService.ConsultarId(id).Interesado;
             if (interesadoConsulta == null)
             {
                 return BadRequest("No se encontro al usuario interesado.");
@@ -76,7 +94,7 @@ namespace testwebapi.Controllers
         [HttpDelete("{id}")]
         public ActionResult<string> Delete(string id)
         {
-            Interesado interesado = interesadoService.ConsultarId(id);
+            Interesado interesado = interesadoService.ConsultarId(id).Interesado;
             if (interesado == null)
             {
                 return BadRequest("Interesado no encontrado");

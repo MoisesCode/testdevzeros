@@ -73,10 +73,10 @@ export class ProductoRegistroComponent implements OnInit {
   registrar(): void {
     this.producto = this.formGroup.value;
     this.crearFactura(this.producto);
-    this.facturaService.post(this.factura).subscribe( f =>
-      // this.factura = f
-      console.log(f)
-    );
+    this.facturaService.post(this.factura).subscribe( f => {
+      this.factura = f;
+      console.log(this.factura);
+    });
   }
 
   buscar(): void {

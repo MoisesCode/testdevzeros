@@ -20,17 +20,18 @@ namespace entity
         public string Tipo { get; set; }
         public decimal Descuento { get; set; }
         public decimal Total { get; set; }
+        [NotMapped]
         public Interesado Interesado { get; set; }
         public List<Detalle> Detalles { get; set; }
 
-        public List<Detalle> AgregarDetalle(Producto producto)
+        public void AgregarDetalle(Producto producto)
         {
             Detalle detalle = new Detalle();
             detalle.Producto = producto;
             detalle.Cantidad = producto.Cantidad;
             detalle.CalcularTotal();
             calcularTotal();
-            return Detalles;
+            Detalles.Add(detalle);
         }
 
         private void calcularTotal()

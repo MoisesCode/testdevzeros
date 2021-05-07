@@ -72,13 +72,41 @@ namespace dal.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Productos",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Cantidad = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Descuento = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Iva = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    NitProveedor = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ProveedorNit = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Productos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Productos_Proveedores_ProveedorNit",
+                        column: x => x.ProveedorNit,
+                        principalTable: "Proveedores",
+                        principalColumn: "Nit",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Detalles",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FacturaId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Cantidad = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Total = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Total = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Descuento = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    IdProducto = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductoId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -89,37 +117,11 @@ namespace dal.Migrations
                         principalTable: "Facturas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Productos",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Cantidad = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Descuento = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Iva = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    DetalleId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    NitProveedor = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProveedorNit = table.Column<string>(type: "nvarchar(450)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Productos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Productos_Detalles_DetalleId",
-                        column: x => x.DetalleId,
-                        principalTable: "Detalles",
+                        name: "FK_Detalles_Productos_ProductoId",
+                        column: x => x.ProductoId,
+                        principalTable: "Productos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Productos_Proveedores_ProveedorNit",
-                        column: x => x.ProveedorNit,
-                        principalTable: "Proveedores",
-                        principalColumn: "Nit",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -129,16 +131,14 @@ namespace dal.Migrations
                 column: "FacturaId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Detalles_ProductoId",
+                table: "Detalles",
+                column: "ProductoId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Facturas_InteresadoId",
                 table: "Facturas",
                 column: "InteresadoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Productos_DetalleId",
-                table: "Productos",
-                column: "DetalleId",
-                unique: true,
-                filter: "[DetalleId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Productos_ProveedorNit",
@@ -149,22 +149,22 @@ namespace dal.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Productos");
+                name: "Detalles");
 
             migrationBuilder.DropTable(
                 name: "Usuarios");
 
             migrationBuilder.DropTable(
-                name: "Detalles");
-
-            migrationBuilder.DropTable(
-                name: "Proveedores");
-
-            migrationBuilder.DropTable(
                 name: "Facturas");
 
             migrationBuilder.DropTable(
+                name: "Productos");
+
+            migrationBuilder.DropTable(
                 name: "Interesados");
+
+            migrationBuilder.DropTable(
+                name: "Proveedores");
         }
     }
 }

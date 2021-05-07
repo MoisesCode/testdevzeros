@@ -13,6 +13,7 @@ import { ProductoRegistroComponent } from './producto/producto-registro/producto
 import { ProveedorRegistroComponent } from './proveedor/proveedor-registro/proveedor-registro.component';
 import { ProveedorConsultaComponent } from './proveedor/proveedor-consulta/proveedor-consulta.component';
 import { ProductoDetalleComponent } from './producto/producto-detalle/producto-detalle.component';
+import { GenerarFacturaComponent } from './factura/generar-factura/generar-factura.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ProductoDetalleComponent } from './producto/producto-detalle/producto-d
     ProductoRegistroComponent,
     ProveedorRegistroComponent,
     ProveedorConsultaComponent,
-    ProductoDetalleComponent
+    ProductoDetalleComponent,
+    GenerarFacturaComponent
   ],
   exports: [
     LoginComponent,

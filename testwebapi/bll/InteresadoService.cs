@@ -47,16 +47,28 @@ namespace bll
             usuario.Celular = interesado.Celular;
             usuario.Rol = "interesado";
 
-            Interesado interesadoBuscado = ConsultarId(interesado.Id);
+            Interesado interesadoBuscado = ConsultarId(interesado.Id).Interesado;
             usuarioService.Guardar(usuario);
         }
         public List<Interesado> Consultar()
         {
             return testWebContext.Interesados.ToList();
         }
-        public Interesado ConsultarId(string id)
+        public ConsultarInteresadoResponse ConsultarId(string id)
         {
-            return testWebContext.Interesados.Find(id);
+            try
+            {
+                Interesado interesadoBuscado = testWebContext.Interesados.Find(id);
+                if (interesadoBuscado != null)
+                {
+                    return new ConsultarInteresadoResponse(interesadoBuscado, "Interesado encontrado");
+                }
+                return new ConsultarInteresadoResponse("Interesado no encontrado");
+            }
+            catch (Exception e)
+            {
+                return new ConsultarInteresadoResponse($"Ocurrió un error {e.Message}");
+            }
         }
         public EliminarInteresadoResponse Eliminar(Interesado interesado)
         {
@@ -118,6 +130,24 @@ namespace bll
                 Error = false;
             }
             public EditarInteresadoResponse(string mensaje)
+            {
+                Mensaje = mensaje;
+                Error = true;
+            }
+        }
+
+        public class ConsultarInteresadoResponse
+        {
+            public Interesado Interesado { get; set; }
+            public string Mensaje { get; set; }
+            public bool Error { get; set; }
+            public ConsultarInteresadoResponse(Interesado interesado, string mensaje)
+            {
+                Mensaje = mensaje;
+                Interesado = interesado;
+                Error = false;
+            }
+            public ConsultarInteresadoResponse(string mensaje)
             {
                 Mensaje = mensaje;
                 Error = true;

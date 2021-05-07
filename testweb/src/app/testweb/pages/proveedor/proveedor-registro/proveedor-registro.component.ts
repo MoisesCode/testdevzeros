@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -14,7 +15,7 @@ export class ProveedorRegistroComponent implements OnInit {
   formGroup: FormGroup;
   proveedor: Proveedor;
 
-  constructor(private formBuilder: FormBuilder, private proveedorService: ProveedorService) { }
+  constructor(private formBuilder: FormBuilder, private proveedorService: ProveedorService, private location: Location) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -44,7 +45,7 @@ export class ProveedorRegistroComponent implements OnInit {
   registrar(): void {
     this.proveedor = this.formGroup.value;
     this.proveedorService.post(this.proveedor).subscribe( p =>
-      console.log(p)
+      this.location.back()
     );
   }
 }

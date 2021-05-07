@@ -9,6 +9,7 @@ namespace Models
             {
                 Id = detalle.Id;
                 FacturaId = detalle.FacturaId;
+                IdProducto = detalle.IdProducto;
                 Cantidad = detalle.Cantidad;
                 Total = detalle.Total;
                 Producto = detalle.Producto;

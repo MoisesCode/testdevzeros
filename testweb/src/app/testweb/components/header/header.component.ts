@@ -22,12 +22,10 @@ export class HeaderComponent implements OnInit {
   onClick(): void {
     sessionStorage.removeItem('currentUser');
     this.router.navigate(['/login']);
-    window.location.reload();
-    this.router.navigate(['/login']);
   }
 
   verificarPermiso(): void{
-    if (this.usuario.rol === 'interesado'){
+    if (this.usuario.rol === 'interesado' || this.usuario.rol === 'ventas'){
       this.usuarioInteresado = false;
     }else{
       this.usuarioInteresado = true;
