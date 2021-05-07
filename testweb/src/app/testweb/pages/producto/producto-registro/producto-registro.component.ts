@@ -74,7 +74,8 @@ export class ProductoRegistroComponent implements OnInit {
     this.producto = this.formGroup.value;
     this.crearFactura(this.producto);
     this.facturaService.post(this.factura).subscribe( f =>
-      this.factura = f
+      // this.factura = f
+      console.log(f)
     );
   }
 

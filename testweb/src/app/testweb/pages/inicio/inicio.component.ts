@@ -22,7 +22,7 @@ export class InicioComponent implements OnInit {
   permisoRegistrarProductos = false;
   permisoEliminarProductos = false;
   permisoModificarProductos = false;
-
+  permisoGenerarFactura = false;
   ngOnInit(): void {
     this.usuario = (JSON.parse(sessionStorage.getItem('currentUser')));
     this.verificarPermiso();
@@ -32,13 +32,16 @@ export class InicioComponent implements OnInit {
   verificarPermiso(): void{
     if (this.usuario.rol === 'interesado'){
       this.usuarioInteresado = false;
+      this.permisoGenerarFactura = false;
     }else if (this.usuario.rol === 'ventas'){
       this.permisoRegistrarProductos = false;
       this.permisoEliminarProductos = false;
+      this.permisoGenerarFactura = true;
     }else if (this.usuario.rol === 'avaluos'){
       this.permisoRegistrarProductos = true;
       this.permisoEliminarProductos = true;
       this.permisoModificarProductos = true;
+      this.permisoGenerarFactura = false;
     }else{
       this.usuarioInteresado = true;
       this.usuarioVentas = false;
@@ -50,5 +53,9 @@ export class InicioComponent implements OnInit {
     this.productoService.gets().subscribe( p =>
       this.productos = p
     );
+  }
+
+  productoId(producto: Producto): void {
+    this.productoService.guardarProducto(producto);
   }
 }

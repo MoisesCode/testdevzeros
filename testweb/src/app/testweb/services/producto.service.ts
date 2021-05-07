@@ -12,7 +12,9 @@ export class ProductoService {
 
   urlApi = 'https://localhost:5001/Producto';
   producto: Producto;
+  productoNuevo: Producto;
   productos: Producto[];
+  idBuscar = '';
 
   constructor(private http: HttpClient) { }
 
@@ -28,4 +30,7 @@ export class ProductoService {
     );
   }
 
+  guardarProducto(p): void {
+    this.productoNuevo = p;
+  }
 }

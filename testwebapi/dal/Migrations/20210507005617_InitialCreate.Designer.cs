@@ -9,7 +9,7 @@ using dal;
 namespace dal.Migrations
 {
     [DbContext(typeof(TestWebContext))]
-    [Migration("20210506234047_InitialCreate")]
+    [Migration("20210507005617_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -58,6 +58,15 @@ namespace testwebapi.Controllers
             return response;
         }
 
+        [HttpGet("{id}")]
+        public ActionResult<FacturaViewModel> getByProductoId(string id)
+        {
+            Factura response = facturaService.ConsultarByProductoId(id);
+            if(response == null) return NotFound();
+            FacturaViewModel facturaViewModel = new FacturaViewModel(response);
+            return facturaViewModel;
+        }
+
         [HttpPut("{id}")]
         public ActionResult<string> Put(Factura factura, string id)
         {

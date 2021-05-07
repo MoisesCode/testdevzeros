@@ -54,6 +54,15 @@ namespace bll
             }
             return facturas;
         }
+
+        public Factura ConsultarByProductoId(string id)
+        {
+            Producto producto = testWebContext.Productos.Find(id);
+            Detalle detalle = testWebContext.Detalles.Find(producto.DetalleId);
+            Factura factura = testWebContext.Facturas.Find(detalle.FacturaId);
+
+            return factura;
+        }
         public Factura ConsultarId(string id)
         {
             return testWebContext.Facturas.Find(id);

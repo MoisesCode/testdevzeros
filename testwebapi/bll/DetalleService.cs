@@ -14,6 +14,7 @@ namespace bll
         public DetalleService(TestWebContext testWebContext)
         {
             this.testWebContext = testWebContext;
+            productoService = new ProductoService(testWebContext);
         }
 
         public GuardarDetalleResponse Guardar(Detalle detalle)
@@ -28,7 +29,7 @@ namespace bll
                 detalle.CalcularTotal();
                 testWebContext.Detalles.Add(detalle);
                 testWebContext.SaveChanges();
-                GuardarProducto(detalle.Producto);
+                productoService.Guardar(detalle.Producto);
                 return new GuardarDetalleResponse(detalle, "Detalle guardada correctamente");
             }
             catch (Exception e)
@@ -36,10 +37,10 @@ namespace bll
                 return new GuardarDetalleResponse($"Ocurrió un error {e.Message}");
             }
         }
-        private void GuardarProducto(Producto producto)
+
+        public Detalle ConsultarId(string id)
         {
-            productoService = new ProductoService(testWebContext);
-            productoService.Guardar(producto);
+            return testWebContext.Detalles.Find(id);
         }
 
         public class GuardarDetalleResponse

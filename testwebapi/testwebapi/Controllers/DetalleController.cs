@@ -15,6 +15,19 @@ namespace testwebapi.Controllers
     [Route("[controller]")]
     public class DetalleController : ControllerBase
     {
+        private readonly DetalleService detalleService;
+        public DetalleController(TestWebContext context)
+        {
+            detalleService = new DetalleService(context);
+        }
 
+        [HttpGet("{id}")]
+        public ActionResult<DetalleViewModel> getByNit(string id)
+        {
+            Detalle detalle = detalleService.ConsultarId(id);
+            if(detalle == null) return NotFound();
+            DetalleViewModel detalleViewModel = new DetalleViewModel(detalle);
+            return detalleViewModel;
+        }
     }
 }
