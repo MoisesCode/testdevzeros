@@ -20,6 +20,7 @@ const routes: Routes = [
   {
     path: 'inicio',
     canActivate: [AuthGuard, AuthInteresadoGuard, AuthVentasGuard],
+    data: { rol: 'todos'},
     component: InicioComponent
   },
   {
@@ -53,11 +54,14 @@ const routes: Routes = [
   },
   {
     path: 'detalles',
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AuthVentasGuard],
+    data: { rol: 'ventas', rol1: 'avaluos' },
     component: ProductoDetalleComponent
   },
   {
     path: 'generarFactura',
+    canActivate: [AuthVentasGuard],
+    data: { rol: 'ventas' },
     component: GenerarFacturaComponent
   },
   {

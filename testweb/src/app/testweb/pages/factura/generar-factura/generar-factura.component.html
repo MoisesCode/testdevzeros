@@ -11,20 +11,29 @@
             <button type="button" (click)="generarFactura()" class="col-md-3 btn btn-primary">Generar factura</button>
           </div>
         </div>
-
         <br>
         <div class="row">
           <div class="col-md-7">
             <h4>Productos agregados</h4>
-            <h6>Nombre / precio / Cantidad / Subtotal</h6>
-            <div *ngFor="let item of factura.detalles">
-              <a> {{item.producto.nombre}} / </a>
-              <a> {{item.producto.precio}} / </a>
-              <a> {{item.producto.cantidad}} / </a>
-              <a> {{ item.total }} / </a>
-            </div>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Subtotal</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let item of factura.detalles">
+                <tr>
+                  <td>{{item.producto.nombre}}</td>
+                  <td>{{item.producto.precio}}</td>
+                  <td>{{item.producto.cantidad}}</td>
+                  <td>{{ item.total }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-
           <div class="row col-md-2">
             <label>Cantidad</label>
             <input [(ngModel)]="cantidad" type="number" class="form-control">
@@ -33,7 +42,6 @@
             <label>Descuento</label>
             <input [(ngModel)]="descuento" type="number" class="form-control">
           </div>
-
           <div class="col-md-3">
             <label>Cliente id</label>
               <div class="input-group mb-3">
@@ -45,14 +53,12 @@
               <h4>Total a pagar ${{ totalview }}</h4>
           </div>
         </div>
-
         <div class="album py-3 bg-light">
           <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
               <div class="col" *ngFor="let item of productos">
                 <div class="card shadow-sm">
                   <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
                   <div class="card-body">
                     <h6>{{ item.nombre }}, ${{ item.precio }}</h6>
                     <h6>Descuento, ${{ item.descuento }}</h6>

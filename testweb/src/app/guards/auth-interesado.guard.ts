@@ -3,7 +3,6 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Observable } from 'rxjs';
 
 import { Usuario } from '../testweb/models/usuario';
-import { UsuarioService } from '../testweb/services/usuario.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +11,21 @@ export class AuthInteresadoGuard implements CanActivate {
 
   usuario: Usuario = (JSON.parse(sessionStorage.getItem('currentUser')));
 
-  constructor(private usuarioService: UsuarioService, private router: Router) {}
+  constructor(private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    const rol = route.data.rol;
+    if (rol === 'todos') {
+      return true;
+    }
 
     if (this.usuario.rol === 'interesado') {
       return true;
-    }else if (this.usuario.rol === 'avaluos'){
-      return true;
     }else if (!sessionStorage.getItem('currentUser')){
       this.router.navigate(['/Login']);
+      return false;
     }
   }
-
 }

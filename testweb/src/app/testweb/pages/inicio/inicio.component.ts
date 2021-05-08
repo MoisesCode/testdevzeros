@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 import { Producto } from '../../models/producto';
@@ -53,7 +54,7 @@ export class InicioComponent implements OnInit {
   consultar(): void {
     this.productos = [];
     this.productoService.gets().subscribe( p =>
-      this.productos = p
+      this.productos = p,
     );
   }
 
