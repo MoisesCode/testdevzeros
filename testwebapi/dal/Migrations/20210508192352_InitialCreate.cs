@@ -59,6 +59,7 @@ namespace dal.Migrations
                     Tipo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Descuento = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Total = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    IdInteresado = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     InteresadoId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -107,6 +108,7 @@ namespace dal.Migrations
                     Cantidad = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Total = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Descuento = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PrecioProducto = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     IdProducto = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>

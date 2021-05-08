@@ -18,10 +18,14 @@ namespace entity
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Id { get; set; }
         public string Tipo { get; set; }
+        [Column(TypeName="decimal(18,2)")]
         public decimal Descuento { get; set; }
+        [Column(TypeName="decimal(18,2)")]
         public decimal Total { get; set; }
         [NotMapped]
         public Interesado Interesado { get; set; }
+        [ForeignKey("IdInteresado")]
+        public string IdInteresado { get; set; }
         public List<Detalle> Detalles { get; set; }
 
         public void AgregarDetalle(Producto producto)

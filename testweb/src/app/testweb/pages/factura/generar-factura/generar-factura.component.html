@@ -21,14 +21,16 @@
                   <th scope="col">Nombre</th>
                   <th scope="col">Precio</th>
                   <th scope="col">Cantidad</th>
+                  <th scope="col">Descuento</th>
                   <th scope="col">Subtotal</th>
                 </tr>
               </thead>
               <tbody *ngFor="let item of factura.detalles">
                 <tr>
-                  <td>{{item.producto.nombre}}</td>
-                  <td>{{item.producto.precio}}</td>
-                  <td>{{item.producto.cantidad}}</td>
+                  <td>{{ item.producto.nombre }}</td>
+                  <td>{{ item.precioProducto }}</td>
+                  <td>{{ item.cantidad }}</td>
+                  <td>{{ item.descuento }}</td>
                   <td>{{ item.total }}</td>
                 </tr>
               </tbody>
@@ -49,7 +51,6 @@
                 <button (click)="buscarCliente()" class="btn btn-outline-secondary" type="button">Buscar</button>
               </div>
               <h4>Descuento ${{ descuentoview }}</h4>
-              <h4>Total ${{ totalview }}</h4>
               <h4>Total a pagar ${{ totalview }}</h4>
           </div>
         </div>
@@ -80,3 +81,18 @@
     </div>
   </main>
 </body>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Informacion</h5>
+      </div>
+      <div class="modal-body">
+        <p>Factura realizada correctamente</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -24,7 +24,7 @@ namespace bll
                 Detalle detalleBuscado = testWebContext.Detalles.Find(detalle.Id);
                 if (detalleBuscado != null)
                 {
-                    return new GuardarDetalleResponse("Detalle ya registrada.");
+                    return new GuardarDetalleResponse("Detalle ya registrado.");
                 }
                 detalle.CalcularTotal();
                 testWebContext.Detalles.Add(detalle);

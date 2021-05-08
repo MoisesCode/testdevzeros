@@ -12,9 +12,14 @@ namespace entity
 
         [ForeignKey("FacturaId")]
         public string FacturaId { get; set; }
+        [Column(TypeName="decimal(18,2)")]
         public decimal Cantidad { get; set; }
+        [Column(TypeName="decimal(18,2)")]
         public decimal Total { get; set; }
+        [Column(TypeName="decimal(18,2)")]
         public decimal Descuento { get; set; }
+        [Column(TypeName="decimal(18,2)")]
+        public decimal PrecioProducto { get; set; }
         [ForeignKey("IdProducto")]
         public string IdProducto { get; set; }
         [NotMapped]

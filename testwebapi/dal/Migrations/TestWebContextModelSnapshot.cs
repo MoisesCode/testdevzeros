@@ -37,6 +37,9 @@ namespace dal.Migrations
                     b.Property<string>("IdProducto")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("PrecioProducto")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(18,2)");
 
@@ -55,6 +58,9 @@ namespace dal.Migrations
 
                     b.Property<decimal>("Descuento")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("IdInteresado")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InteresadoId")
                         .HasColumnType("nvarchar(450)");

@@ -27,7 +27,7 @@ namespace bll
                 {
                     return new GuardarFacturaResponse("Factura ya registrada.");
                 }
-                ejecutarSace(factura);
+                ejecutarSave(factura);
                 return new GuardarFacturaResponse(factura, "Factura guardada correctamente");
             }
             catch (Exception e)
@@ -43,7 +43,7 @@ namespace bll
             var value = random.Next(1, 200);
             return value.ToString();
         }
-        public void ejecutarSace(Factura factura)
+        public void ejecutarSave(Factura factura)
         {
             if(factura.Tipo == "Compra")
             {
@@ -55,6 +55,7 @@ namespace bll
                     testWebContext.SaveChanges();
                 }
             }else{
+                factura.IdInteresado = factura.Interesado.Id;
                 testWebContext.Facturas.Add(factura);
                 foreach (var item in factura.Detalles)
                 {

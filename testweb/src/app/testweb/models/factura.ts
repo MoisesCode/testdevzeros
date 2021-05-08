@@ -6,6 +6,7 @@ export class Factura {
   tipo: string;
   descuento: number;
   total: number;
+  idInteresado: string;
   interesado?: Interesado;
   detalles: Detalle[];
 }

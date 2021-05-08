@@ -10,7 +10,7 @@ using dal;
 namespace dal.Migrations
 {
     [DbContext(typeof(TestWebContext))]
-    [Migration("20210508160224_InitialCreate")]
+    [Migration("20210508192352_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,6 +39,9 @@ namespace dal.Migrations
                     b.Property<string>("IdProducto")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("PrecioProducto")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(18,2)");
 
@@ -57,6 +60,9 @@ namespace dal.Migrations
 
                     b.Property<decimal>("Descuento")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("IdInteresado")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InteresadoId")
                         .HasColumnType("nvarchar(450)");

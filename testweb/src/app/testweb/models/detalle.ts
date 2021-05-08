@@ -6,6 +6,7 @@ export class Detalle {
   cantidad: number;
   total: number;
   descuento: number;
+  precioProducto: number;
   idProducto: string;
   producto: Producto;
 }

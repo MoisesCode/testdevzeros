@@ -56,18 +56,19 @@ export class GenerarFacturaComponent implements OnInit {
   }
 
   agregar(p: Producto): void {
+    this.productoAgg = new Producto();
+    this.productoAgg = p;
+
     if (this.verificarCantidad()){
-      p.cantidad = this.cantidad;
-      p.descuento = this.descuento;
-      p.precio = this.verificarPrecio(p);
+      this.productoAgg.descuento = this.descuento;
       if (this.factura.detalles.length === 0) {
-        this.factura.detalles.push(this.crearDetalle(p));
+        this.factura.detalles.push(this.crearDetalle(this.productoAgg));
         this.calcularTotalFactura();
         this.calcularTotalDescuento();
         return;
       }else{
         this.factura.detalles.forEach(d => {
-          if (d.producto.id === p.id) {
+          if (d.producto.id === this.productoAgg.id) {
             this.encontrado = true;
           }else{
             this.encontrado = false;
@@ -78,7 +79,7 @@ export class GenerarFacturaComponent implements OnInit {
       if (this.encontrado) {
         alert('Este producto ya ha sido agregado');
       }else{
-        this.factura.detalles.push(this.crearDetalle(p));
+        this.factura.detalles.push(this.crearDetalle(this.productoAgg));
         this.calcularTotalFactura();
         this.calcularTotalDescuento();
       }
@@ -102,11 +103,12 @@ export class GenerarFacturaComponent implements OnInit {
 
   crearDetalle(p: Producto): Detalle {
     this.detalle = new Detalle();
-    this.detalle.cantidad = p.cantidad;
+    this.detalle.precioProducto = this.verificarPrecio(p);
+    this.detalle.cantidad = this.cantidad;
     this.detalle.descuento = this.descuento;
     this.detalle.producto = p;
     this.detalle.idProducto = p.id;
-    this.detalle.total = this.calcularTotalDetalle(this.detalle.cantidad, this.detalle.producto.precio);
+    this.detalle.total = this.calcularTotalDetalle(this.detalle.cantidad, this.detalle.precioProducto);
     this.productosAgregados.push(p);
     return this.detalle;
   }

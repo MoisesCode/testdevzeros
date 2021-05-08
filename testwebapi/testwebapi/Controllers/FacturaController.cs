@@ -43,6 +43,7 @@ namespace testwebapi.Controllers
             {
                 Id = facturaInputModel.Id,
                 Tipo = facturaInputModel.Tipo,
+                IdInteresado = facturaInputModel.IdInteresado,
                 Total = facturaInputModel.Total,
                 Descuento = facturaInputModel.Descuento,
                 Interesado = facturaInputModel.Interesado,

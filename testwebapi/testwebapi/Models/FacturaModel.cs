@@ -9,6 +9,7 @@ namespace Models
             {
                 Id = factura.Id;
                 Tipo = factura.Tipo;
+                IdInteresado = factura.IdInteresado;
                 Total = factura.Total;
                 Descuento = factura.Descuento;
                 Interesado = factura.Interesado;
