@@ -31,5 +31,9 @@ namespace entity
         {
             Iva = 0.19m;
         }
+        public void calcularPrecio()
+        {
+            Precio = Precio + (Precio * Iva);
+        }
     }
 }

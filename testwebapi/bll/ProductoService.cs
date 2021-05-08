@@ -23,6 +23,7 @@ namespace bll
                 {
                     return new GuardarProductoResponse("Producto ya registrado.");
                 }
+                producto.calcularPrecio();
                 testWebContext.Productos.Add(producto);
                 testWebContext.SaveChanges();
                 return new GuardarProductoResponse(producto, "Producto guardado correctamente");

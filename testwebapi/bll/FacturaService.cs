@@ -51,6 +51,7 @@ namespace bll
                 testWebContext.SaveChanges();
                 foreach (var item in factura.Detalles)
                 {
+                    item.Producto.calcularPrecio();
                     testWebContext.Productos.Add(item.Producto);
                     testWebContext.SaveChanges();
                 }

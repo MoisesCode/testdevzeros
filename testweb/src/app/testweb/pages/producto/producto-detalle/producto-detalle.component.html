@@ -16,12 +16,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row"> {{ 1 }} </th>
-              <td> {{ detalle.facturaId }} </td>
-              <td> {{ detalle.cantidad }} </td>
-              <td> {{ detalle.descuento }} </td>
-              <td> {{ detalle.total }} </td>
+            <tr *ngFor="let item of detalles; index as i">
+              <th scope="row"> {{ i + 1 }} </th>
+              <td> {{ item.facturaId }} </td>
+              <td> {{ item.cantidad }} </td>
+              <td> {{ item.descuento }} </td>
+              <td> {{ item.total }} </td>
             </tr>
           </tbody>
         </table>

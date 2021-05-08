@@ -22,12 +22,9 @@ namespace testwebapi.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<DetalleViewModel> getByNit(string id)
+        public IEnumerable<DetalleViewModel> getByNit(string id)
         {
-            Detalle detalle = detalleService.ConsultarId(id);
-            if(detalle == null) return NotFound();
-            DetalleViewModel detalleViewModel = new DetalleViewModel(detalle);
-            return detalleViewModel;
+            return detalleService.ConsultarId(id).ConvertAll(d => new DetalleViewModel(d));
         }
     }
 }

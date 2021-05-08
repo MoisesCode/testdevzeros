@@ -11,13 +11,13 @@ import { Detalle } from '../models/detalle';
 export class DetalleService {
 
   urlApi = 'https://localhost:5001/Detalle';
-  detalle: Detalle;
+  detalles: Detalle[];
 
   constructor(private http: HttpClient) { }
 
-  getById(id: string): Observable<Detalle> {
-    return this.http.get<Detalle>(this.urlApi + '/' + id).pipe(
-      tap(d => this.detalle = d)
+  getById(id: string): Observable<Detalle[]> {
+    return this.http.get<Detalle[]>(this.urlApi + '/' + id).pipe(
+      tap(d => this.detalles = d)
     );
   }
 }

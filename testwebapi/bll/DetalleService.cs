@@ -38,9 +38,9 @@ namespace bll
             }
         }
 
-        public Detalle ConsultarId(string id)
+        public List<Detalle> ConsultarId(string id)
         {
-            return testWebContext.Detalles.Find(id);
+            return testWebContext.Detalles.Where(d => d.IdProducto == id).ToList();
         }
 
         public class GuardarDetalleResponse

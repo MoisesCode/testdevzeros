@@ -29,6 +29,7 @@ export class GenerarFacturaComponent implements OnInit {
   cantidad = 0;
   precio = 0;
   descuento = 0;
+
   descuentoview = 0;
   totalview = 0;
 
@@ -108,16 +109,16 @@ export class GenerarFacturaComponent implements OnInit {
     this.detalle.descuento = this.descuento;
     this.detalle.producto = p;
     this.detalle.idProducto = p.id;
-    this.detalle.total = this.calcularTotalDetalle(this.detalle.cantidad, this.detalle.precioProducto);
+    this.detalle.total = this.calcularTotalDetalle(this.detalle.cantidad, this.detalle.precioProducto, this.detalle.descuento);
     this.productosAgregados.push(p);
     return this.detalle;
   }
 
   calcularDescuento(): void {}
 
-  calcularTotalDetalle(cantidad, precio): number {
+  calcularTotalDetalle(cantidad, precio, descuento): number {
     const total = cantidad * precio;
-    return total;
+    return total - descuento;
   }
 
   calcularTotalFactura(): void {

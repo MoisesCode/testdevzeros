@@ -34,13 +34,14 @@ namespace entity
             detalle.Producto = producto;
             detalle.Cantidad = producto.Cantidad;
             detalle.CalcularTotal();
-            calcularTotal();
             Detalles.Add(detalle);
+            calcularTotal();
         }
 
-        private void calcularTotal()
+        public void calcularTotal()
         {
-            Total = Detalles.Sum( d => d.Total);
+            Descuento = Detalles.Sum(d => d.Descuento);
+            Total = Detalles.Sum( d => d.Total) - Descuento;
         }
     }
 }
