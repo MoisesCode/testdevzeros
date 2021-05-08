@@ -1,14 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Interesado } from '../models/interesado';
 
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { tap, retry, catchError } from 'rxjs/operators';
+
+import { Interesado } from '../models/interesado';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InteresadoService {
+
+  httpHeader = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }
 
   urlApi = 'https://localhost:5001/Interesado';
   interesado: Interesado;
