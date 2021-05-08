@@ -77,33 +77,26 @@ namespace testwebapi.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult<string> Put(Interesado interesado, string id)
+        public ActionResult<InteresadoViewModel> Put(string id, Interesado interesado)
         {
             Interesado interesadoConsulta = interesadoService.ConsultarId(id).Interesado;
             if (interesadoConsulta == null)
             {
                 return BadRequest("No se encontro al usuario interesado.");
             }
-            else
-            {
-                var mensaje = interesadoService.Editar(interesado).Mensaje;
-                return Ok(mensaje);
-            }
+            Interesado response = interesadoService.Editar(interesadoConsulta, interesado).Interesado;
+            return Ok(response);
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<string> Delete(string id)
+        public ActionResult<InteresadoViewModel> Delete(string id)
         {
             Interesado interesado = interesadoService.ConsultarId(id).Interesado;
             if (interesado == null)
             {
                 return BadRequest("Interesado no encontrado");
             }
-            else
-            {
-                var mensaje = interesadoService.Eliminar(interesado).Mensaje;
-                return Ok(mensaje);
-            }
+            return Ok(interesadoService.Eliminar(interesado).Interesado);
         }
     }
 }

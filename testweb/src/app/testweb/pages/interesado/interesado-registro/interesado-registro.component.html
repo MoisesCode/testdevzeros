@@ -8,7 +8,7 @@
           <h2 class="text-center">Registro de cliente</h2>
           <form class="py-3" [formGroup]="formGroup">
 
-            <div class="form-group">
+            <div class="form-group" *ngIf="interesadoModificar === null">
               <label>Identificacion</label>
               <input type="text" formControlName="id" name="identificacion" class="form-control" />
             </div>

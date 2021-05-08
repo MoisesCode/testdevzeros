@@ -76,9 +76,10 @@ namespace bll
             testWebContext.SaveChanges();
             return new EliminarInteresadoResponse(interesado, "Interesado eliminado correctamente.");
         }
-        public EditarInteresadoResponse Editar(Interesado interesado)
+        public EditarInteresadoResponse Editar(Interesado interesadoOld, Interesado interesado)
         {
-            testWebContext.Interesados.Update(interesado);
+            testWebContext.Interesados.Remove(interesadoOld);
+            testWebContext.Interesados.Add(interesado);
             testWebContext.SaveChanges();
             return new EditarInteresadoResponse(interesado, "Interesado modificado correctamente.");
         }

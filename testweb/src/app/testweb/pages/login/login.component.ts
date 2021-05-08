@@ -12,22 +12,20 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  ruta: string;
   usuario: Usuario;
   formGroup: FormGroup;
-  permitirAcceso = false;
 
   constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService, private router: Router) { }
 
   ngOnInit(): void {
     this.buildForm();
+    this.logIn();
   }
 
   private buildForm(): void {
     this.usuario = new Usuario();
     this.usuario.correo = '';
     this.usuario.contrasena = '';
-
     this.formGroup = this.formBuilder.group({
       correo: [this.usuario.correo, Validators.required],
       contrasena: [this.usuario.contrasena, Validators.required]
@@ -41,24 +39,20 @@ export class LoginComponent implements OnInit {
     this.buscar();
   }
 
+  logIn(): void {
+    this.usuario = (JSON.parse(sessionStorage.getItem('currentUser')));
+    if (this.usuario !== null) {
+      this.router.navigate(['/inicio']);
+    }
+  }
+
   buscar(): void {
     this.usuario = this.formGroup.value;
     this.usuarioService.getUser(this.usuario).subscribe( u => {
       this.usuario = (JSON.parse(sessionStorage.getItem('currentUser')));
-      if (this.usuario.rol === 'avaluos'){
-        this.permitirAcceso = true;
-      } else if (this.usuario.rol === 'interesado') {
-        this.permitirAcceso = true;
-      } else if (this.usuario.rol === 'ventas'){
-        this.permitirAcceso = true;
-      }else { this.permitirAcceso = false; }
+      if (this.usuario.rol === 'avaluos' || this.usuario.rol === 'interesado' || this.usuario.rol === 'ventas'){
+        this.router.navigate(['/inicio']);
+      }
     });
-    this.redireccionar();
-  }
-
-  redireccionar(): void{
-    if (this.permitirAcceso){
-      this.router.navigate(['/inicio']);
-    }
   }
 }

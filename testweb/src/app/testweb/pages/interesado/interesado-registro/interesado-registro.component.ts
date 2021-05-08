@@ -13,11 +13,29 @@ export class InteresadoRegistroComponent implements OnInit {
 
   formGroup: FormGroup;
   interesado: Interesado;
+  interesadoModificar: Interesado;
 
   constructor(private formBuilder: FormBuilder, private interesadoService: InteresadoService, private localtion: Location) { }
 
   ngOnInit(): void {
     this.buildForm();
+    this.verificarModificar();
+  }
+
+  verificarModificar(): void {
+    this.interesadoModificar = this.interesadoService.interesadoModificar;
+    if (this.interesadoModificar) {
+      this.map(this.interesadoModificar);
+    }
+  }
+  map(interesado: Interesado): void {
+    this.formGroup.setValue({
+      id: interesado.id,
+      nombre: interesado.nombre,
+      celular: interesado.celular,
+      correo: interesado.correo,
+      contrasena: interesado.contrasena
+    });
   }
 
   private buildForm(): void{
@@ -47,9 +65,16 @@ export class InteresadoRegistroComponent implements OnInit {
 
   registrar(): void {
     this.interesado = this.formGroup.value;
-    this.interesadoService.post(this.interesado).subscribe( i =>
-      this.localtion.back()
-    );
+    if (this.interesadoModificar) {
+      this.interesado.id = this.interesadoModificar.id;
+      this.interesadoService.put(this.interesado.id, this.interesado).subscribe( i =>
+        this.localtion.back()
+      );
+    }else{
+      this.interesadoService.post(this.interesado).subscribe( i =>
+        this.localtion.back()
+      );
+    }
   }
 
 }
