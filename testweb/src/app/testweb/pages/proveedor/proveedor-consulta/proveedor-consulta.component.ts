@@ -11,6 +11,8 @@ import { ProveedorService } from 'src/app/testweb/services/proveedor.service';
 export class ProveedorConsultaComponent implements OnInit {
 
   proveedores: Proveedor[];
+  nitEliminar: string;
+
   constructor(private proveedorService: ProveedorService) { }
 
   ngOnInit(): void {
@@ -22,5 +24,22 @@ export class ProveedorConsultaComponent implements OnInit {
     this.proveedorService.gets().subscribe( p =>
       this.proveedores = p
     );
+  }
+
+  onClick(nit: string): void {
+    this.nitEliminar = nit;
+  }
+
+  onModificar(proveedor: Proveedor): void {
+    this.proveedorService.onModificar(proveedor);
+  }
+
+  onNuevoInteresado(): void {
+    this.proveedorService.proveedorModificar = null;
+  }
+
+  eliminar(): void {
+    this.proveedorService.delete(this.nitEliminar).subscribe();
+    window.location.reload();
   }
 }

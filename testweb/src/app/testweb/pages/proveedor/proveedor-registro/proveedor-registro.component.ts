@@ -14,11 +14,30 @@ export class ProveedorRegistroComponent implements OnInit {
 
   formGroup: FormGroup;
   proveedor: Proveedor;
+  proveedorModificar: Proveedor;
 
-  constructor(private formBuilder: FormBuilder, private proveedorService: ProveedorService, private location: Location) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private proveedorService: ProveedorService,
+    private location: Location) { }
 
   ngOnInit(): void {
     this.buildForm();
+    this.verificarModificar();
+  }
+
+  verificarModificar(): void {
+    this.proveedorModificar = this.proveedorService.proveedorModificar;
+    if (this.proveedorModificar) {
+      this.map(this.proveedorModificar);
+    }
+  }
+  map(proveedor: Proveedor): void {
+    this.formGroup.setValue({
+      nit: proveedor.nit,
+      nombre: proveedor.nombre,
+      celular: proveedor.celular
+    });
   }
 
   private buildForm(): void {
@@ -44,8 +63,15 @@ export class ProveedorRegistroComponent implements OnInit {
 
   registrar(): void {
     this.proveedor = this.formGroup.value;
-    this.proveedorService.post(this.proveedor).subscribe( p =>
-      this.location.back()
-    );
+    if (this.proveedorModificar) {
+      this.proveedor.nit = this.proveedorModificar.nit;
+      this.proveedorService.put(this.proveedor.nit, this.proveedor).subscribe( i =>
+        this.location.back()
+      );
+    }else{
+      this.proveedorService.post(this.proveedor).subscribe( p =>
+        this.location.back()
+      );
+    }
   }
 }

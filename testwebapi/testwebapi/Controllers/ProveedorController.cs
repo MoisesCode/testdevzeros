@@ -66,33 +66,27 @@ namespace testwebapi.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult<string> Put(Proveedor proveedor, string id)
+        public ActionResult<ProveedorViewModel> Put(string id, Proveedor proveedor)
         {
             Proveedor proveedorConsulta = proveedorService.ConsultarId(id);
             if (proveedorConsulta == null)
             {
                 return BadRequest("No se encontro el Proveedor.");
             }
-            else
-            {
-                var mensaje = proveedorService.Editar(proveedor).Mensaje;
-                return Ok(mensaje);
-            }
+            Proveedor response = proveedorService.Editar(proveedorConsulta, proveedor).Proveedor;
+            return Ok(response);
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<string> Delete(string id)
+        public ActionResult<ProveedorViewModel> Delete(string id)
         {
             Proveedor proveedor = proveedorService.ConsultarId(id);
             if (proveedor == null)
             {
                 return BadRequest("Proveedor no encontrado");
             }
-            else
-            {
-                var mensaje = proveedorService.Eliminar(proveedor).Mensaje;
-                return Ok(mensaje);
-            }
+            Proveedor response = proveedorService.Eliminar(proveedor).Proveedor;
+            return Ok(response);
         }
     }
 }

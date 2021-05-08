@@ -8,7 +8,7 @@
           <h2 class="text-center">Registro de producto</h2>
           <form class="py-3" [formGroup]="formGroup">
 
-            <div class="form-group">
+            <div class="form-group" *ngIf="proveedorModificar === null">
               <label>Nit</label>
               <input type="text" formControlName="nit" class="form-control" />
             </div>

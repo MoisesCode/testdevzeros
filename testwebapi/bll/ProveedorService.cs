@@ -50,9 +50,10 @@ namespace bll
             return new EliminarProveedorResponse(proveedor, "Proveedor eliminado correctamente.");
         }
 
-        public EditarProveedorResponse Editar(Proveedor proveedor)
+        public EditarProveedorResponse Editar(Proveedor proveedorOld, Proveedor proveedor)
         {
-            testWebContext.Proveedores.Update(proveedor);
+            testWebContext.Proveedores.Remove(proveedorOld);
+            testWebContext.Proveedores.Add(proveedor);
             testWebContext.SaveChanges();
             return new EditarProveedorResponse(proveedor, "Proveedor modificado correctamente.");
         }
