@@ -45,7 +45,7 @@ export class GenerarFacturaComponent implements OnInit {
   crearFactura(): void {
     this.factura = new Factura();
     this.factura.detalles = [];
-    this.factura.tipo = 'venta';
+    this.factura.tipo = 'Venta';
   }
 
   consultar(): void {
@@ -105,6 +105,7 @@ export class GenerarFacturaComponent implements OnInit {
     this.detalle.cantidad = p.cantidad;
     this.detalle.descuento = this.descuento;
     this.detalle.producto = p;
+    this.detalle.idProducto = p.id;
     this.detalle.total = this.calcularTotalDetalle(this.detalle.cantidad, this.detalle.producto.precio);
     this.productosAgregados.push(p);
     return this.detalle;

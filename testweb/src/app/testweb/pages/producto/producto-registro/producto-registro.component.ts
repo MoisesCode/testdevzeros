@@ -57,12 +57,21 @@ export class ProductoRegistroComponent implements OnInit {
   }
   crearDetalle(producto: Producto): Detalle {
     this.detalle = new Detalle();
+    producto.id = this.generarId();
+    console.log(this.generarId());
     this.detalle.cantidad = producto.cantidad;
     this.detalle.total = 0;
+    this.detalle.idProducto = producto.id;
     this.detalle.producto = producto;
+    console.log(this.detalle);
+    console.log(producto);
     return this.detalle;
   }
-
+  generarId(): string {
+    const min = 1;
+    const max = 300;
+    return String(Math.floor((Math.random() * max) + min));
+  }
   onRegistrar(): void {
     if (this.formGroup.invalid && this.encontrado === false){
       return;

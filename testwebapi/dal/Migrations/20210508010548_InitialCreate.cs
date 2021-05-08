@@ -105,8 +105,7 @@ namespace dal.Migrations
                     Cantidad = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Total = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Descuento = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    IdProducto = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductoId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    IdProducto = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -117,23 +116,12 @@ namespace dal.Migrations
                         principalTable: "Facturas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Detalles_Productos_ProductoId",
-                        column: x => x.ProductoId,
-                        principalTable: "Productos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Detalles_FacturaId",
                 table: "Detalles",
                 column: "FacturaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Detalles_ProductoId",
-                table: "Detalles",
-                column: "ProductoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Facturas_InteresadoId",
@@ -152,19 +140,19 @@ namespace dal.Migrations
                 name: "Detalles");
 
             migrationBuilder.DropTable(
+                name: "Productos");
+
+            migrationBuilder.DropTable(
                 name: "Usuarios");
 
             migrationBuilder.DropTable(
                 name: "Facturas");
 
             migrationBuilder.DropTable(
-                name: "Productos");
+                name: "Proveedores");
 
             migrationBuilder.DropTable(
                 name: "Interesados");
-
-            migrationBuilder.DropTable(
-                name: "Proveedores");
         }
     }
 }

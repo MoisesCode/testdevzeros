@@ -9,7 +9,7 @@ using dal;
 namespace dal.Migrations
 {
     [DbContext(typeof(TestWebContext))]
-    [Migration("20210507234252_InitialCreate")]
+    [Migration("20210508010548_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,17 +38,12 @@ namespace dal.Migrations
                     b.Property<string>("IdProducto")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProductoId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("FacturaId");
-
-                    b.HasIndex("ProductoId");
 
                     b.ToTable("Detalles");
                 });
@@ -185,12 +180,6 @@ namespace dal.Migrations
                     b.HasOne("entity.Factura", null)
                         .WithMany("Detalles")
                         .HasForeignKey("FacturaId");
-
-                    b.HasOne("entity.Producto", "Producto")
-                        .WithMany()
-                        .HasForeignKey("ProductoId");
-
-                    b.Navigation("Producto");
                 });
 
             modelBuilder.Entity("entity.Factura", b =>

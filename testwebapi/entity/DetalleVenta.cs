@@ -4,7 +4,7 @@ using System;
 
 namespace entity
 {
-    public class Detalle
+    public class DetalleVenta
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

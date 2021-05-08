@@ -27,13 +27,40 @@ namespace bll
                 {
                     return new GuardarFacturaResponse("Factura ya registrada.");
                 }
-                testWebContext.Facturas.Add(factura);
-                testWebContext.SaveChanges();
+                ejecutarSace(factura);
                 return new GuardarFacturaResponse(factura, "Factura guardada correctamente");
             }
             catch (Exception e)
             {
                 return new GuardarFacturaResponse($"Ocurrió un error {e.Message}");
+            }
+        }
+
+        public string generarId()
+        {
+            var seed = Environment.TickCount;
+            var random = new Random(seed);
+            var value = random.Next(1, 200);
+            return value.ToString();
+        }
+        public void ejecutarSace(Factura factura)
+        {
+            if(factura.Tipo == "Compra")
+            {
+                testWebContext.Facturas.Add(factura);
+                testWebContext.SaveChanges();
+                foreach (var item in factura.Detalles)
+                {
+                    testWebContext.Productos.Add(item.Producto);
+                    testWebContext.SaveChanges();
+                }
+            }else{
+                testWebContext.Facturas.Add(factura);
+                foreach (var item in factura.Detalles)
+                {
+                    item.IdProducto = item.Producto.Id;
+                }
+                testWebContext.SaveChanges();
             }
         }
 
@@ -44,7 +71,7 @@ namespace bll
             {
                 foreach (var detalle in testWebContext.Detalles.Where(d => d.FacturaId == item.Id).ToList())
                 {
-                    item.AgregarDetalle(testWebContext.Productos.Where(p => p.Id == detalle.IdProducto).FirstOrDefault());
+                    item.AgregarDetalle(testWebContext.Productos.Where( p => p.Id == detalle.IdProducto).FirstOrDefault());
                     facturas.Add(item);
                 }
             }
