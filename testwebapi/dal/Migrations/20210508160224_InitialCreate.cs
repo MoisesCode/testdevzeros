@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace dal.Migrations
 {
@@ -83,6 +84,7 @@ namespace dal.Migrations
                     Iva = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     NitProveedor = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ProveedorNit = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>

@@ -22,12 +22,11 @@
           <div class="col" *ngFor="let item of productos">
             <div class="card shadow-sm" routerLink="/detalles" (click)="productoId(item)">
               <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
               <div class="card-body">
                 <h6>{{ item.nombre }}, ${{ item.precio }}</h6>
                 <h6>Descuento, ${{ item.descuento }}</h6>
                 <p class="card-text">{{ item.descripcion }}</p>
-                <p class="card-text">01/01/2021</p>
+                <p class="card-text">{{item.fecha | date}}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     <button *ngIf="permisoModificarProductos" type="button" class="btn btn-sm btn-outline-secondary">Editar</button>

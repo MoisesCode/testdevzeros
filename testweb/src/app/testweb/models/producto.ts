@@ -7,4 +7,5 @@ export class Producto {
   iva?: number;
   nitProveedor: string;
   precio: number;
+  fecha: Date;
 }

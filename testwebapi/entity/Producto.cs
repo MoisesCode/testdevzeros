@@ -21,6 +21,7 @@ namespace entity
         public decimal Iva { get; set; }
         public string NitProveedor { get; set; }
         public decimal Precio { get; set; }
+        public DateTime Fecha { get; set; }
 
         private void AsignarIva()
         {

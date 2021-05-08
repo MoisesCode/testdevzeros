@@ -11,6 +11,7 @@ namespace Models
                 Nombre = producto.Nombre;
                 Descripcion = producto.Descripcion;
                 Precio = producto.Precio;
+                Fecha = producto.Fecha;
                 Descuento = producto.Descuento;
                 Cantidad = producto.Cantidad;
                 Iva = producto.Iva;

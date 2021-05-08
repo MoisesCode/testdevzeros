@@ -53,6 +53,7 @@ const routes: Routes = [
   },
   {
     path: 'detalles',
+    canActivate: [AuthGuard],
     component: ProductoDetalleComponent
   },
   {
