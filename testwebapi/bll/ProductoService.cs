@@ -36,7 +36,7 @@ namespace bll
 
         public List<Producto> Consultar()
         {
-            return testWebContext.Productos.ToList();
+            return testWebContext.Productos.Where(p => p.Cantidad > 0).ToList();
         }
 
         public Producto ConsultarId(string id)
