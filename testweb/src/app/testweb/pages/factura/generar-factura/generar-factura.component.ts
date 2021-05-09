@@ -33,6 +33,8 @@ export class GenerarFacturaComponent implements OnInit {
   descuentoview = 0;
   totalview = 0;
 
+  facturaReady = false;
+
   constructor(
     private productoService: ProductoService,
     private interesadoService: InteresadoService,
@@ -138,12 +140,14 @@ export class GenerarFacturaComponent implements OnInit {
   }
 
   generarFactura(): void {
+    this.facturaReady = false;
     if (this.factura.detalles.length === 0){
       alert('Debe agregar al menos un detalle');
       return;
     }else{
       this.facturaService.post(this.factura).subscribe( f => {
-        console.log(f);
+        this.factura = f;
+        this.facturaReady = true;
       });
     }
   }
