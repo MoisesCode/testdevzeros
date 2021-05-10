@@ -4,11 +4,8 @@ using System;
 
 namespace entity
 {
-    public class Usuario
+    public class Usuario : Entity<int>
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string Id { get; set; }
         public string Nombre { get; set; }
         public string Correo { get; set; }
         public string Contrasena { get; set; }

@@ -1,0 +1,12 @@
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\infraestructura\bin\Debug\net5.0\infraestructura.deps.json
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\infraestructura\bin\Debug\net5.0\infraestructura.dll
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\infraestructura\bin\Debug\net5.0\ref\infraestructura.dll
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\infraestructura\bin\Debug\net5.0\infraestructura.pdb
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\infraestructura\obj\Debug\net5.0\infraestructura.csprojAssemblyReference.cache
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\infraestructura\obj\Debug\net5.0\infraestructura.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\infraestructura\obj\Debug\net5.0\infraestructura.AssemblyInfoInputs.cache
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\infraestructura\obj\Debug\net5.0\infraestructura.AssemblyInfo.cs
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\infraestructura\obj\Debug\net5.0\infraestructura.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\infraestructura\obj\Debug\net5.0\infraestructura.dll
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\infraestructura\obj\Debug\net5.0\ref\infraestructura.dll
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\infraestructura\obj\Debug\net5.0\infraestructura.pdb

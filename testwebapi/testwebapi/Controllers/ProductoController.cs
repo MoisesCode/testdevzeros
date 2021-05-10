@@ -41,7 +41,6 @@ namespace testwebapi.Controllers
         {
             Producto producto = new Producto
             {
-                Id = productoInputModel.Id,
                 Nombre = productoInputModel.Nombre,
                 Precio = productoInputModel.Precio,
                 Fecha = productoInputModel.Fecha,

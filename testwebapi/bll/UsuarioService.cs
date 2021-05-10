@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using infraestructura.encrypt;
 using System.Linq;
 using System;
 using entity;
@@ -23,6 +24,7 @@ namespace bll
                 {
                     return new GuardarUsuarioResponse("Usuario ya registrado.");
                 }
+                usuario.Contrasena = Hash.GetSha256(usuario.Contrasena);
                 testWebContext.Usuarios.Add(usuario);
                 testWebContext.SaveChanges();
                 return new GuardarUsuarioResponse(usuario, "Usuario guardado correctamente");
@@ -32,7 +34,6 @@ namespace bll
                 return new GuardarUsuarioResponse($"Ocurrió un error {e.Message}");
             }
         }
-
         public List<Usuario> Consultar()
         {
             return testWebContext.Usuarios.ToList();
@@ -46,7 +47,7 @@ namespace bll
         public Usuario buscarByCorreoContrasena(string correo, string contrasena){
             try
             {
-                return testWebContext.Usuarios.Where(u => u.Correo == correo && u.Contrasena == contrasena).FirstOrDefault();
+                return testWebContext.Usuarios.Where(u => u.Correo == correo && u.Contrasena == Hash.GetSha256(contrasena)).FirstOrDefault();
             }
             catch (Exception)
             {

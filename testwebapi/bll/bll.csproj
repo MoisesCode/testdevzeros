@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\entity\entity.csproj" />
     <ProjectReference Include="..\dal\dal.csproj" />
+    <ProjectReference Include="..\infraestructura\infraestructura.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

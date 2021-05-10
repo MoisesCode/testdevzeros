@@ -10,7 +10,7 @@ using dal;
 namespace dal.Migrations
 {
     [DbContext(typeof(TestWebContext))]
-    [Migration("20210508192352_InitialCreate")]
+    [Migration("20210510001041_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,9 +23,10 @@ namespace dal.Migrations
 
             modelBuilder.Entity("entity.Detalle", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal>("Cantidad")
                         .HasColumnType("decimal(18,2)");
@@ -33,11 +34,11 @@ namespace dal.Migrations
                     b.Property<decimal>("Descuento")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("FacturaId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("FacturaId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("IdProducto")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("IdProducto")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("PrecioProducto")
                         .HasColumnType("decimal(18,2)");
@@ -54,18 +55,19 @@ namespace dal.Migrations
 
             modelBuilder.Entity("entity.Factura", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal>("Descuento")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("IdInteresado")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("IdInteresado")
+                        .HasColumnType("int");
 
-                    b.Property<string>("InteresadoId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("InteresadoId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Tipo")
                         .HasColumnType("nvarchar(max)");
@@ -82,9 +84,10 @@ namespace dal.Migrations
 
             modelBuilder.Entity("entity.Interesado", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Celular")
                         .HasColumnType("nvarchar(max)");
@@ -105,9 +108,10 @@ namespace dal.Migrations
 
             modelBuilder.Entity("entity.Producto", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal>("Cantidad")
                         .HasColumnType("decimal(18,2)");
@@ -161,9 +165,10 @@ namespace dal.Migrations
 
             modelBuilder.Entity("entity.Usuario", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Celular")
                         .HasColumnType("nvarchar(max)");
@@ -189,7 +194,9 @@ namespace dal.Migrations
                 {
                     b.HasOne("entity.Factura", null)
                         .WithMany("Detalles")
-                        .HasForeignKey("FacturaId");
+                        .HasForeignKey("FacturaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("entity.Factura", b =>

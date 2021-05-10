@@ -62,7 +62,6 @@ export class ProductoRegistroComponent implements OnInit {
   }
   crearDetalle(producto: Producto): Detalle {
     this.detalle = new Detalle();
-    producto.id = this.generarId();
     producto.fecha = new Date();
     this.detalle.cantidad = producto.cantidad;
     this.detalle.total = this.calcularTotalDetalle(this.producto.cantidad, this.producto.precio);

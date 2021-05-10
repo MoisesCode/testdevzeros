@@ -15,3 +15,5 @@ C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\obj\Debug\net5.
 C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\obj\Debug\net5.0\bll.dll
 C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\obj\Debug\net5.0\ref\bll.dll
 C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\obj\Debug\net5.0\bll.pdb
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\bin\Debug\net5.0\infraestructura.dll
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\bll\bin\Debug\net5.0\infraestructura.pdb

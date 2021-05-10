@@ -39,15 +39,13 @@ namespace bll
         {
             usuarioService = new UsuarioService(testWebContext);
             usuario = new Usuario();
-
             usuario.Id = interesado.Id;
             usuario.Nombre = interesado.Nombre;
             usuario.Correo = interesado.Correo;
             usuario.Contrasena =interesado.Contrasena;
             usuario.Celular = interesado.Celular;
             usuario.Rol = "interesado";
-
-            Interesado interesadoBuscado = ConsultarId(interesado.Id).Interesado;
+            Interesado interesadoBuscado = ConsultarId(interesado.Id.ToString()).Interesado;
             usuarioService.Guardar(usuario);
         }
         public List<Interesado> Consultar()

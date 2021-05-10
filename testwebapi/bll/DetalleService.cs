@@ -40,7 +40,7 @@ namespace bll
 
         public List<Detalle> ConsultarId(string id)
         {
-            return testWebContext.Detalles.Where(d => d.IdProducto == id).ToList();
+            return testWebContext.Detalles.Where(d => d.IdProducto.ToString() == id).ToList();
         }
 
         public class GuardarDetalleResponse

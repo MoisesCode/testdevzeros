@@ -4,16 +4,13 @@ using System;
 
 namespace entity
 {
-    public class Producto
+    public class Producto : Entity<int>
     {
         public Producto()
         {
             AsignarIva();
         }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string Id { get; set; }
         public string Nombre { get; set; }
         [Column(TypeName="decimal(18,2)")]
         public decimal Cantidad { get; set; }

@@ -65,3 +65,5 @@ C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\testwebapi\bin\Debu
 C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\testwebapi\bin\Debug\net5.0\entity.pdb
 C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\testwebapi\bin\Debug\net5.0\bll.pdb
 C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\testwebapi\bin\Debug\net5.0\dal.pdb
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\testwebapi\bin\Debug\net5.0\infraestructura.dll
+C:\Users\User\Documents\www\devzeros\testdevzeros\testwebapi\testwebapi\bin\Debug\net5.0\infraestructura.pdb

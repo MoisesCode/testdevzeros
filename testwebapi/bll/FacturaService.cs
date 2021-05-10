@@ -35,14 +35,6 @@ namespace bll
                 return new GuardarFacturaResponse($"Ocurrió un error {e.Message}");
             }
         }
-
-        public string generarId()
-        {
-            var seed = Environment.TickCount;
-            var random = new Random(seed);
-            var value = random.Next(1, 200);
-            return value.ToString();
-        }
         public void ejecutarSave(Factura factura)
         {
             if(factura.Tipo == "Compra")

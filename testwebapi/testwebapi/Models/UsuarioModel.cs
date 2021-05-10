@@ -7,10 +7,8 @@ namespace Models
         {
             public UsuarioViewModel(Usuario usuario)
             {
-                Id = usuario.Id;
                 Nombre = usuario.Nombre;
                 Correo = usuario.Correo;
-                Contrasena = usuario.Contrasena;
                 Celular = usuario.Celular;
                 Rol = usuario.Rol;
             }

@@ -35,7 +35,7 @@ namespace testwebapi.Controllers
                 };
                 return BadRequest(detallesProblema);
             }
-            return Ok(response.Usuario);
+            return Ok(new UsuarioViewModel(response.Usuario));
         }
 
         private Usuario MapToUsuario(UsuarioInputModel usuarioInputModel)

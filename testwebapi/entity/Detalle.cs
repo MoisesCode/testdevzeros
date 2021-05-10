@@ -4,14 +4,10 @@ using System;
 
 namespace entity
 {
-    public class Detalle
+    public class Detalle : Entity<int>
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string Id { get; set; }
-
         [ForeignKey("FacturaId")]
-        public string FacturaId { get; set; }
+        public int FacturaId { get; set; }
         [Column(TypeName="decimal(18,2)")]
         public decimal Cantidad { get; set; }
         [Column(TypeName="decimal(18,2)")]
@@ -21,7 +17,7 @@ namespace entity
         [Column(TypeName="decimal(18,2)")]
         public decimal PrecioProducto { get; set; }
         [ForeignKey("IdProducto")]
-        public string IdProducto { get; set; }
+        public int IdProducto { get; set; }
         [NotMapped]
         public Producto Producto { get; set; }
 

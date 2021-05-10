@@ -41,12 +41,10 @@ namespace testwebapi.Controllers
         {
             Interesado interesado = new Interesado
             {
-                Id = interesadoInputModel.Id,
                 Nombre = interesadoInputModel.Nombre,
                 Celular = interesadoInputModel.Celular,
                 Correo = interesadoInputModel.Correo,
-                Contrasena = interesadoInputModel.Contrasena,
-                Facturas = interesadoInputModel.Facturas,
+                Contrasena = interesadoInputModel.Contrasena
             };
             return interesado;
         }

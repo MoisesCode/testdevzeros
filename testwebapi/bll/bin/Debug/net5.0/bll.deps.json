@@ -9,7 +9,8 @@
       "bll/1.0.0": {
         "dependencies": {
           "dal": "1.0.0",
-          "entity": "1.0.0"
+          "entity": "1.0.0",
+          "infraestructura": "1.0.0"
         },
         "runtime": {
           "bll.dll": {}
@@ -1081,6 +1082,11 @@
         "runtime": {
           "entity.dll": {}
         }
+      },
+      "infraestructura/1.0.0": {
+        "runtime": {
+          "infraestructura.dll": {}
+        }
       }
     }
   },
@@ -1775,6 +1781,11 @@
       "sha512": ""
     },
     "entity/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "infraestructura/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

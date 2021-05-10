@@ -6,7 +6,7 @@ using System;
 
 namespace entity
 {
-    public class Factura
+    public class Factura : Entity<int>
     {
         public Factura()
         {
@@ -14,9 +14,6 @@ namespace entity
             Interesado = new Interesado();
         }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string Id { get; set; }
         public string Tipo { get; set; }
         [Column(TypeName="decimal(18,2)")]
         public decimal Descuento { get; set; }
@@ -25,7 +22,7 @@ namespace entity
         [NotMapped]
         public Interesado Interesado { get; set; }
         [ForeignKey("IdInteresado")]
-        public string IdInteresado { get; set; }
+        public int IdInteresado { get; set; }
         public List<Detalle> Detalles { get; set; }
 
         public void AgregarDetalle(Producto producto)

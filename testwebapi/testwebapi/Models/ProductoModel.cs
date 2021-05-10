@@ -1,3 +1,4 @@
+using System;
 using entity;
 
 namespace Models
@@ -5,6 +6,7 @@ namespace Models
     public class ProductoModel {
         public class ProductoViewModel : ProductoInputModel
         {
+            public int Id { get; set; }
             public ProductoViewModel(Producto producto)
             {
                 Id = producto.Id;
@@ -18,6 +20,16 @@ namespace Models
                 NitProveedor = producto.NitProveedor;
             }
         }
-        public class ProductoInputModel : Producto { }
+        public class ProductoInputModel
+        {
+            public string Nombre { get; set; }
+            public string Descripcion { get; set; }
+            public decimal Cantidad { get; set; }
+            public decimal Descuento { get; set; }
+            public decimal Iva { get; set; }
+            public string NitProveedor { get; set; }
+            public decimal Precio { get; set; }
+            public DateTime Fecha { get; set; }
+        }
     }
 }

@@ -1545,6 +1545,16 @@
         "runtime": {
           "bin/placeholder/entity.dll": {}
         }
+      },
+      "infraestructura/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/infraestructura.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/infraestructura.dll": {}
+        }
       }
     }
   },
@@ -5823,12 +5833,18 @@
       "type": "project",
       "path": "../entity/entity.csproj",
       "msbuildProject": "../entity/entity.csproj"
+    },
+    "infraestructura/1.0.0": {
+      "type": "project",
+      "path": "../infraestructura/infraestructura.csproj",
+      "msbuildProject": "../infraestructura/infraestructura.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
       "dal >= 1.0.0",
-      "entity >= 1.0.0"
+      "entity >= 1.0.0",
+      "infraestructura >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -5861,6 +5877,9 @@
             },
             "C:\\Users\\User\\Documents\\www\\devzeros\\testdevzeros\\testwebapi\\entity\\entity.csproj": {
               "projectPath": "C:\\Users\\User\\Documents\\www\\devzeros\\testdevzeros\\testwebapi\\entity\\entity.csproj"
+            },
+            "C:\\Users\\User\\Documents\\www\\devzeros\\testdevzeros\\testwebapi\\infraestructura\\infraestructura.csproj": {
+              "projectPath": "C:\\Users\\User\\Documents\\www\\devzeros\\testdevzeros\\testwebapi\\infraestructura\\infraestructura.csproj"
             }
           }
         }
